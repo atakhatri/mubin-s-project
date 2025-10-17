@@ -1,0 +1,302 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --background: #111827;
+  --background-secondary: #1f2937;
+  --background-tertiary: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --border-color: #374151;
+  --border-color-secondary: #4b5563;
+  --primary: #32CD32;
+}
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+}
+
+body, p, li, input, textarea, button {
+  font-family: var(--font-roboto);
+}
+
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.glow-on-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* = ease-in-out */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.glow-on-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  transform: skewX(-25deg);
+  transition: left 0.8s ease-in-out;
+}
+
+.glow-on-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(50, 205, 50, 0.4);
+}
+
+.glow-on-hover:hover::before {
+  left: 150%;
+}
+
+.btn-primary {
+  background-color: #32CD32;
+  color: #121212;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #28a728;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(50, 205, 50, 0.5);
+}
+
+.text-primary {
+  color: #32CD32;
+}
+
+.border-primary {
+  border-color: #32CD32;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #32CD32;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #28a728;
+}
+
+.bg-glass, .testimonial-card {
+  background-color: color-mix(in srgb, var(--background-secondary) 40%, transparent) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* We can add a slide-up animation later if needed for unmounting */
+
+/* Hero text animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@keyframes bell-shake {
+  0%, 50%, 100% {
+    transform: rotate(0);
+  }
+  5%, 15%, 25%, 35%, 45% {
+    transform: rotate(13deg);
+  }
+  10%, 20%, 30%, 40% {
+    transform: rotate(-13deg);
+  }
+}
+
+.animate-bell-shake {
+  display: inline-block;
+  transform-origin: top center;
+  animation: bell-shake 4s ease-in-out infinite;
+}
+
+/* Bubbles Animation */
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  top: -150px;
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float 25s infinite ease-in;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(120vh) translateX(20vw) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(120vh) translateX(-20vw) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 12s; }
+.bubble:nth-child(2) { left: 20%; width: 50px; height: 50px; animation-duration: 15s; animation-name: float2; }
+.bubble:nth-child(3) { left: 25%; width: 30px; height: 30px; animation-duration: 18s; }
+.bubble:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 13s; animation-name: float2; }
+.bubble:nth-child(5) { left: 70%; width: 35px; height: 35px; animation-duration: 20s; }
+.bubble:nth-child(6) { left: 80%; width: 45px; height: 45px; animation-duration: 17s; animation-name: float2; }
+.bubble:nth-child(7) { left: 90%; width: 25px; height: 25px; animation-duration: 14s; }
+.bubble:nth-child(8) { left: 55%; width: 40px; height: 40px; animation-duration: 19s; animation-name: float2; }
+.bubble:nth-child(9) { left: 5%;  width: 28px; height: 28px; animation-duration: 16s; }
+.bubble:nth-child(10) { left: 50%; width: 55px; height: 55px; animation-duration: 12.5s; animation-name: float2; }
+.bubble:nth-child(11) { left: 15%; width: 22px; height: 22px; animation-duration: 19s; }
+.bubble:nth-child(12) { left: 30%; width: 48px; height: 48px; animation-duration: 16s; animation-name: float2; }
+.bubble:nth-child(13) { left: 65%; width: 33px; height: 33px; animation-duration: 22s; }
+.bubble:nth-child(14) { left: 75%; width: 58px; height: 58px; animation-duration: 14s; animation-name: float2; }
+.bubble:nth-child(15) { left: 85%; width: 24px; height: 24px; animation-duration: 28s; }
+.bubble:nth-child(16) { left: 60%; width: 42px; height: 42px; animation-duration: 21s; animation-name: float2; }
+.bubble:nth-child(17) { left: 35%; width: 28px; height: 28px; animation-duration: 15s; }
+.bubble:nth-child(18) { left: 45%; width: 52px; height: 52px; animation-duration: 24s; animation-name: float2; }
+.bubble:nth-child(19) { left: 2%;  width: 31px; height: 31px; animation-duration: 18s; }
+.bubble:nth-child(20) { left: 95%; width: 46px; height: 46px; animation-duration: 20s; animation-name: float2; }
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+@keyframes slide-out-to-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-to-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
