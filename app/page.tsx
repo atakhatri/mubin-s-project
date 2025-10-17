@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import Bubbles from "./bubbles";
+import Bubbles from "../components/content/bubbles";
+import Image from "next/image";
 import Testimonials from "../components/content/Testimonials";
 
 export default function Home() {
@@ -21,12 +22,69 @@ export default function Home() {
             <Link href="/services" className="btn-primary">
               Explore Services
             </Link>
-            <Link
-              href="/contact"
-              className="px-8 py-3 border-2 border-primary text-primary rounded-md transition-all duration-300 hover:bg-primary/10 hover:-translate-y-0.5"
-            >
+            <Link href="/contact" className="btn-secondary">
               Get in Touch
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
+              Why Partner with TechSolutions?
+            </h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">
+              We are more than just a service provider; we are your dedicated
+              partner in innovation and growth.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative pl-8">
+              <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary to-green-500 rounded-full"></div>
+              <ul className="space-y-6 text-lg">
+                {[
+                  {
+                    title: "Expert Team",
+                    desc: "Our certified professionals bring years of industry experience to solve your most complex challenges.",
+                  },
+                  {
+                    title: "Customer-Centric Approach",
+                    desc: "We prioritize your needs, ensuring solutions are tailored to your unique business goals.",
+                  },
+                  {
+                    title: "Proven Results",
+                    desc: "Our track record of successful projects and satisfied clients speaks for itself.",
+                  },
+                  {
+                    title: "Future-Proof Technology",
+                    desc: "We leverage the latest technologies to build scalable and resilient solutions for tomorrow.",
+                  },
+                ].map((item) => (
+                  <li key={item.title}>
+                    <h3 className="font-semibold text-xl text-text-primary mb-1">
+                      {item.title}
+                    </h3>
+                    <p className="text-text-secondary">{item.desc}</p>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/about" className="btn-secondary mt-8 inline-block">
+                Learn More About Us
+              </Link>
+            </div>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/why-us.svg"
+                alt="Illustration of a team working on a project"
+                width={450}
+                height={350}
+                className="max-w-full h-auto shadow-lg animate-fade-in-up rounded-xl"
+              />
+            </div>
           </div>
         </div>
       </section>

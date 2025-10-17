@@ -1,47 +1,128 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa';
+import Link from "next/link";
+import Image from "next/image";
+import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-background-secondary border-t border-border-color">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="text-center md:text-left">
-          <div className="relative inline-block">
+    <footer className="border-t border-border-color footer-glow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+        {/* Left Section: Page Links */}
+        <div className="flex flex-col items-center md:items-start gap-4 py-12 bg-gradient-to-l from-background-secondary to-background-tertiary/50">
+          <h2 className="text-2xl font-semibold text-text-primary">
+            Quick Links
+          </h2>
+          <Link
+            href="/"
+            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            About
+          </Link>
+          <Link
+            href="/services"
+            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Services
+          </Link>
+          <Link
+            href="/contact"
+            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Contact
+          </Link>
+        </div>
+
+        {/* Center Section: Logo and Socials */}
+        <div className="relative flex flex-col items-center justify-around gap-8 bg-teal-900/20 border-x border-white">
+          <Link
+            href="/"
+            className="relative flex items-center justify-center text-3xl font-bold text-primary transition-all duration-200 hover:scale-105"
+          >
             <Image
               src="/logo.svg"
               alt="logo"
-              width={96}
-              height={96}
-              className="absolute -top-8 -left-4 h-24 w-24 text-background-tertiary opacity-20 hidden md:block"
-              aria-hidden="true"
+              width={160}
+              height={160}
+              className="absolute inset-0 m-auto opacity-30"
             />
-            <Link href="/" className="relative flex items-center gap-2 text-2xl font-bold text-primary transition-all duration-200 hover:scale-105 hover:opacity-90">
-              <span>TechSolutions</span>
+            <span className="relative z-10">TechSolutions</span>
+          </Link>
+          <div className="flex space-x-6 bg-primary/10 p-3 rounded-full border-2 animate-border-spin">
+            <Link
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
-            <p className="text-text-secondary mt-2 text-sm">© {new Date().getFullYear()} TechSolutions. All rights reserved.</p>
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+            </Link>
+            <Link
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <FaTwitter className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+            </Link>
+            <Link
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebook className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+            </Link>
           </div>
         </div>
-        <div className="flex flex-col items-center md:items-end gap-4">
-          <div className="flex space-x-6 text-sm">
-            <Link href="/about" className="text-text-secondary hover:text-primary transition-colors">About</Link>
-            <Link href="/services" className="text-text-secondary hover:text-primary transition-colors">Services</Link>
-            <Link href="/contact" className="text-text-secondary hover:text-primary transition-colors">Contact</Link>
+
+        {/* Right Section: Legal and Contact */}
+        <div className="flex flex-col items-center md:items-end gap-4 py-12 bg-gradient-to-r from-background-secondary to-background-tertiary/50">
+          <h2 className="text-2xl font-semibold text-text-primary">Legal</h2>
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-x-4 gap-y-2">
+            <Link
+              href="/privacy-policy"
+              className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-text-secondary/50">|</span>
+            <Link
+              href="/security"
+              className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            >
+              Security
+            </Link>
+            <span className="text-text-secondary/50">|</span>
+            <Link
+              href="/terms"
+              className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            >
+              Terms & Conditions
+            </Link>
           </div>
-          <div className="flex space-x-8">
-            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <FaGithub className="h-6 w-6 text-text-secondary transition-all duration-300 hover:text-white hover:scale-110" />
-            </Link>
-            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <FaLinkedin className="h-6 w-6 text-text-secondary transition-all duration-300 hover:text-[#0A66C2] hover:scale-110" />
-            </Link>
-            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <FaTwitter className="h-6 w-6 text-text-secondary transition-all duration-300 hover:text-[#1DA1F2] hover:scale-110" />
-            </Link>
-            <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <FaFacebook className="h-6 w-6 text-text-secondary transition-all duration-300 hover:text-[#1877F2] hover:scale-110" />
-            </Link>
-          </div>
+          <p className="text-text-secondary/75 mt-4 text-xs">
+            © {new Date().getFullYear()} TechSolutions. All rights reserved.
+          </p>
+          <hr className="w-full border-border-color my-2" />
+          <a
+            href="mailto:contact@techsolutions.com"
+            className="text-text-secondary hover:text-text-primary transition-colors text-sm"
+          >
+            contact@techsolutions.com
+          </a>
         </div>
       </div>
     </footer>

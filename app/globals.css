@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@tailwind utilities;
 :root {
   --background: #111827;
   --background-secondary: #1f2937;
@@ -84,9 +83,24 @@ button {
 }
 
 .btn-primary:hover {
-  background-color: #28a728;
+  background-color: #78f878;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(50, 205, 50, 0.5);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #32cd32;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: 2px solid #32cd32;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+  background-color: #32cd32;
+  color: #121212;
 }
 
 .text-primary {
@@ -436,4 +450,33 @@ button {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+@keyframes border-spin {
+  0% {
+    border-color: white;
+  }
+  25% {
+    border-color: var(--primary);
+  }
+  50% {
+    border-color: white;
+  }
+  75% {
+    border-color: var(--primary);
+  }
+  100% {
+    border-color: white;
+  }
+}
+
+.animate-border-spin {
+  animation: border-spin 6s linear infinite;
+}
+
+.animate-border-color {
+  animation: border-color-change 8s linear infinite;
+}
+.footer-glow {
+  box-shadow: 0 -4px 15px -5px rgba(50, 205, 50, 0.25);
 }
