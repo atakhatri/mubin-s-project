@@ -1,25 +1,16 @@
 import { type Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import {
-  FaPalette,
-  FaShoppingCart,
-  FaCogs,
-  FaTachometerAlt,
   FaSearch,
   FaDraftingCompass,
   FaCode,
   FaRocket,
   FaHeadset,
 } from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiReact,
-  SiNodedotjs,
-  SiVercel,
-  SiTailwindcss,
-  SiTypescript,
-} from "react-icons/si";
+import Introduction from "./Introduction";
+import AnimatedTechStack from "./AnimatedTechStack";
+import Bubbles from "../../../components/content/bubbles";
+import WhatWeBuild from "./WhatWeBuild";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Web Development Services | TechSolutions",
@@ -32,6 +23,8 @@ export default function WebDevelopmentPage() {
     <div className="bg-background text-text-primary">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-teal-900 to-background-secondary py-20 md:py-28 text-center">
+        <Bubbles />
+        <Bubbles />
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-up">
             Web Development
@@ -44,28 +37,7 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-16 sm:py-20">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in-up">
-            <h2 className="text-3xl font-bold mb-4">From Concept to Reality</h2>
-            <p className="text-lg text-text-secondary mb-6">
-              At TechSolutions, we believe a website is more than just code.
-              It's the digital face of your brand and a powerful tool for
-              growth. Our team of expert developers and designers work
-              collaboratively to build web experiences that are not only
-              visually stunning but also fast, secure, and user-friendly.
-            </p>
-          </div>
-          <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg animate-fade-in-up animation-delay-200">
-            <Image
-              src="https://picsum.photos/seed/webdev/1200/800"
-              alt="Web Development Process"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      <Introduction />
 
       {/* Our Process Section */}
       <section className="py-16 sm:py-20 bg-background-secondary">
@@ -75,17 +47,46 @@ export default function WebDevelopmentPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 text-center">
             {[
-              { icon: FaSearch, title: "Discovery" },
-              { icon: FaDraftingCompass, title: "Design" },
-              { icon: FaCode, title: "Development" },
-              { icon: FaRocket, title: "Deployment" },
-              { icon: FaHeadset, title: "Support" },
+              {
+                icon: FaSearch,
+                title: "Discovery",
+                description:
+                  "We dive deep to understand your goals and audience.",
+              },
+              {
+                icon: FaDraftingCompass,
+                title: "Design",
+                description:
+                  "Crafting intuitive and beautiful user interfaces.",
+              },
+              {
+                icon: FaCode,
+                title: "Development",
+                description: "Building your vision with clean, efficient code.",
+              },
+              {
+                icon: FaRocket,
+                title: "Deployment",
+                description:
+                  "Launching your site on a secure, scalable platform.",
+              },
+              {
+                icon: FaHeadset,
+                title: "Support",
+                description: "Providing ongoing maintenance and assistance.",
+              },
             ].map((step, i) => (
-              <div key={step.title} className="flex flex-col items-center">
-                <div className="bg-glass border-2 border-primary rounded-full p-4 mb-4">
-                  <step.icon className="h-8 w-8 text-primary" />
+              <div
+                key={step.title}
+                className="group flex flex-col items-center p-4 transition-all duration-300 hover:-translate-y-2"
+              >
+                <div className="relative bg-primary/10 border-2 border-primary rounded-full p-4 mb-4 transition-colors duration-300 group-hover:bg-primary group-hover:border-primary-dark group-hover:shadow-[0_0_20px_4px] group-hover:shadow-primary/50">
+                  <step.icon className="h-8 w-8 text-primary transition-all duration-300 group-hover:text-white group-hover:rotate-[360deg]" />
                 </div>
-                <h3 className="text-xl font-semibold">{step.title}</h3>
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-text-secondary text-sm">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
@@ -93,31 +94,10 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* Technology Stack */}
-      <section className="py-16 sm:py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Technologies We Master
-          </h2>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 text-text-secondary">
-            {[
-              { icon: SiReact, name: "React" },
-              { icon: SiNextdotjs, name: "Next.js" },
-              { icon: SiNodedotjs, name: "Node.js" },
-              { icon: SiTypescript, name: "TypeScript" },
-              { icon: SiTailwindcss, name: "Tailwind CSS" },
-              { icon: SiVercel, name: "Vercel" },
-            ].map((tech) => (
-              <div
-                key={tech.name}
-                className="flex flex-col items-center gap-2 transition-transform duration-300 hover:scale-110 hover:text-primary"
-              >
-                <tech.icon className="h-12 w-12" />
-                <span className="font-semibold">{tech.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AnimatedTechStack />
+
+      {/* What We Build Section */}
+      <WhatWeBuild />
 
       {/* CTA Section */}
       <section className="bg-gradient-to-t from-teal-900/50 to-background-secondary py-20">
