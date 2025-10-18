@@ -30,6 +30,18 @@ export default function Footer() {
             Services
           </Link>
           <Link
+            href="/case-studies"
+            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Case Studies
+          </Link>
+          <Link
+            href="/blog"
+            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Blog
+          </Link>
+          <Link
             href="/contact"
             className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >

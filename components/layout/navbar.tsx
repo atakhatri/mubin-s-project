@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type FC } from "react";
 import Image from "next/image";
-
+import { useEffect } from "react";
 interface NavItem {
   name: string;
   href: string;
@@ -12,7 +12,9 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
+  { name: "Case Studies", href: "/case-studies" },
   { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -45,30 +47,32 @@ const MenuIcon: FC<{ open: boolean }> = ({ open }) => (
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 p-2 md:p-4">
-      <nav className="bg-background-secondary/80 backdrop-blur-lg rounded-xl border border-border-color shadow-lg transition-all duration-300">
+      <nav
+        className={`bg-background-secondary/80 backdrop-blur-lg rounded-xl border border-border-color shadow-lg transition-all duration-300 ${
+          isScrolled ? "max-w-4xl mx-auto" : "max-w-7xl mx-auto"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Left Links */}
-            <div className="hidden md:flex flex-1 justify-start items-center space-x-6">
-              {navItems.slice(0, 2).map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`nav-link-underline transition-colors duration-300 ${
-                    pathname === item.href
-                      ? "text-primary font-semibold nav-link-active"
-                      : "text-text-secondary hover:text-primary"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-
-            {/* Centered Logo */}
             <div className="flex-shrink-0">
               <Link
                 href="/"
@@ -84,9 +88,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Right Links & Mobile Button */}
             <div className="hidden md:flex flex-1 justify-end items-center space-x-6">
-              {navItems.slice(2).map((item) => (
+              {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -101,8 +104,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Mobile button */}
-            <div className="flex md:hidden flex-1 justify-end">
+            <div className="flex md:hidden">
               <button
                 className="text-text-secondary hover:text-primary"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

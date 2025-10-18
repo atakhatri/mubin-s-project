@@ -3,8 +3,50 @@ import Link from "next/link";
 import Bubbles from "../components/content/bubbles";
 import Image from "next/image";
 import Testimonials from "../components/content/Testimonials";
+import { useState } from "react";
+import {
+  FaCode,
+  FaShieldAlt,
+  FaTasks,
+  FaSitemap,
+  FaChartLine,
+  FaUsersCog,
+  FaUsers,
+  FaHeart,
+  FaAward,
+  FaRocket,
+} from "react-icons/fa";
+
+const whyUsItems = [
+  {
+    title: "Expert Team",
+    desc: "Our certified professionals bring years of industry experience to solve your most complex challenges.",
+    icon: FaUsers,
+    image: "/why-us-team.svg",
+  },
+  {
+    title: "Customer-Centric Approach",
+    desc: "We prioritize your needs, ensuring solutions are tailored to your unique business goals.",
+    icon: FaHeart,
+    image: "/why-us-customer.svg",
+  },
+  {
+    title: "Proven Results",
+    desc: "Our track record of successful projects and satisfied clients speaks for itself.",
+    icon: FaAward,
+    image: "/why-us-results.svg",
+  },
+  {
+    title: "Future-Proof Technology",
+    desc: "We leverage the latest technologies to build scalable and resilient solutions for tomorrow.",
+    icon: FaRocket,
+    image: "/why-us-tech.svg",
+  },
+];
 
 export default function Home() {
+  const [activeWhyUsIndex, setActiveWhyUsIndex] = useState(0);
+
   return (
     <div>
       {/* Hero Section */}
@@ -42,48 +84,57 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative pl-8">
-              <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary to-green-500 rounded-full"></div>
-              <ul className="space-y-6 text-lg">
-                {[
-                  {
-                    title: "Expert Team",
-                    desc: "Our certified professionals bring years of industry experience to solve your most complex challenges.",
-                  },
-                  {
-                    title: "Customer-Centric Approach",
-                    desc: "We prioritize your needs, ensuring solutions are tailored to your unique business goals.",
-                  },
-                  {
-                    title: "Proven Results",
-                    desc: "Our track record of successful projects and satisfied clients speaks for itself.",
-                  },
-                  {
-                    title: "Future-Proof Technology",
-                    desc: "We leverage the latest technologies to build scalable and resilient solutions for tomorrow.",
-                  },
-                ].map((item) => (
-                  <li key={item.title}>
-                    <h3 className="font-semibold text-xl text-text-primary mb-1">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-4">
+              {whyUsItems.map((item, index) => (
+                <div
+                  key={item.title}
+                  className={`p-6 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                    activeWhyUsIndex === index
+                      ? "bg-background-secondary border-primary shadow-lg"
+                      : "border-transparent hover:bg-background-secondary/50"
+                  }`}
+                  onClick={() => setActiveWhyUsIndex(index)}
+                >
+                  <div className="flex items-center gap-4">
+                    <item.icon
+                      className={`w-8 h-8 transition-colors ${
+                        activeWhyUsIndex === index
+                          ? "text-primary"
+                          : "text-text-secondary"
+                      }`}
+                    />
+                    <h3 className="font-semibold text-xl text-text-primary">
                       {item.title}
                     </h3>
-                    <p className="text-text-secondary">{item.desc}</p>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/about" className="btn-secondary mt-8 inline-block">
-                Learn More About Us
-              </Link>
+                  </div>
+                  {activeWhyUsIndex === index && (
+                    <p className="text-text-secondary mt-3 pl-12 animate-fade-in-up">
+                      {item.desc}
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/why-us.svg"
-                alt="Illustration of a team working on a project"
-                width={450}
-                height={350}
-                className="max-w-full h-auto shadow-lg animate-fade-in-up rounded-xl"
-              />
+            <div className="relative w-[400px] h-[400px] mx-auto">
+              {whyUsItems.map((item, index) => (
+                <Image
+                  key={item.title}
+                  src={item.image}
+                  alt={item.title}
+                  width={400}
+                  height={400}
+                  className={`absolute inset-0 max-w-full h-auto rounded-xl shadow-lg transition-all duration-500 ease-in-out ${
+                    activeWhyUsIndex === index
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-95"
+                  }`}
+                  style={{
+                    transitionDelay:
+                      activeWhyUsIndex === index ? "200ms" : "0ms",
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -101,43 +152,52 @@ export default function Home() {
             {[
               {
                 title: "Web Development",
-                desc: "Beautiful, fast, and responsive websites",
+                desc: "We build beautiful, fast, and easy-to-use websites tailored to your business needs and objectives.",
                 href: "/services/web-development",
+                icon: FaCode,
               },
               {
                 title: "Security Consultancy",
-                desc: "Protect your business from cyber threats",
+                desc: "Protect your business from emerging online threats with our expert security guidance and strategies.",
                 href: "/services/security-consultancy",
+                icon: FaShieldAlt,
               },
               {
                 title: "SEO Services",
-                desc: "Boost your online visibility",
+                desc: "Improve your website's visibility and rank higher in search results to attract more organic customers.",
                 href: "/services/seo-services",
+                icon: FaChartLine,
               },
               {
                 title: "Website Management",
-                desc: "Keep your site secure and updated",
+                desc: "Let us handle the technical details and maintenance so you can focus on growing your business.",
                 href: "/services/website-management",
+                icon: FaTasks,
               },
               {
                 title: "IT Infrastructure",
-                desc: "Reliable tech foundation",
+                desc: "Build a strong, scalable, and reliable technology foundation for your business's future.",
                 href: "/services/it-infrastructure-planning",
+                icon: FaSitemap,
               },
               {
                 title: "CRM Integrations",
-                desc: "Streamline customer workflows",
+                desc: "Seamlessly connect your CRM with other tools to automate workflows and boost overall efficiency.",
                 href: "/services/crm-integrations",
+                icon: FaUsersCog,
               },
             ].map((s, i) => (
               <Link
                 key={i}
                 href={s.href}
-                className="glow-on-hover bg-glass p-6 rounded-lg border border-border-color hover:border-primary"
+                className="glow-on-hover bg-glass p-8 rounded-lg border border-border-color hover:border-primary transition-all duration-300 hover:scale-105"
               >
-                <h3 className="text-xl font-semibold mb-2 text-primary">
-                  {s.title}
-                </h3>
+                <div className="flex items-center mb-4">
+                  <s.icon className="h-8 w-8 text-primary mr-4" />
+                  <h3 className="text-2xl font-semibold text-primary">
+                    {s.title}
+                  </h3>
+                </div>
                 <p className="text-text-secondary">{s.desc}</p>
               </Link>
             ))}
