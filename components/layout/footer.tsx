@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-border-color footer-glow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Left Section: Page Links */}
-        <div className="flex flex-col items-center md:items-start gap-4 py-12 bg-gradient-to-l from-background-secondary to-background-tertiary/50">
+        <div className="flex flex-col items-center md:items-start gap-4 py-12">
           <h2 className="text-2xl font-semibold text-text-primary">
             Quick Links
           </h2>
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         {/* Center Section: Logo and Socials */}
-        <div className="relative flex flex-col items-center justify-around gap-8 bg-teal-900/20 border-x border-white">
+        <div className="relative flex flex-col items-center justify-center gap-8">
           <Link
             href="/"
             className="cursor-target relative flex items-center justify-center text-3xl font-bold text-primary transition-all duration-200 hover:scale-105"

@@ -67,7 +67,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 p-2 md:p-4 bg-transparent">
       <nav
-        className={`bg-background-secondary/80 backdrop-blur-lg rounded-xl border border-border-color shadow-lg transition-all duration-300 ${
+        className={`bg-black rounded-xl border border-border-color shadow-lg transition-all duration-300 ${
           isScrolled ? "max-w-4xl mx-auto" : "max-w-7xl mx-auto"
         }`}
       >

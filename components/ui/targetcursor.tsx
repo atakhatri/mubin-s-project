@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useCallback, useMemo } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+  useState,
+  type FC,
+} from "react";
 import { gsap } from "gsap";
 import "./TargetCursor.css";
 
@@ -10,14 +17,23 @@ export interface TargetCursorProps {
   hideDefaultCursor?: boolean;
 }
 
-const TargetCursor: React.FC<TargetCursorProps> = ({
+const TargetCursor: FC<TargetCursorProps> = ({
   targetSelector = ".cursor-target",
   spinDuration = 2,
   hideDefaultCursor = true,
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => setIsMobile(window.innerWidth < 768);
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
+
   const cursorRef = useRef<HTMLDivElement>(null);
-  const cornersRef = useRef<NodeListOf<HTMLDivElement>>(null);
-  const spinTl = useRef<gsap.core.Timeline>(null);
+  const cornersRef = useRef<NodeListOf<HTMLDivElement> | null>(null);
+  const spinTl = useRef<gsap.core.Timeline | null>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const constants = useMemo(
     () => ({
@@ -39,6 +55,14 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   }, []);
 
   useEffect(() => {
+    if (isMobile) {
+      if (cursorRef.current) {
+        cursorRef.current.style.display = "none";
+      }
+      document.body.style.cursor = "auto";
+      return;
+    }
+
     if (!cursorRef.current) return;
 
     const originalCursor = document.body.style.cursor;
@@ -321,13 +345,20 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       window.removeEventListener("scroll", scrollHandler);
 
       if (activeTarget) {
-        cleanupTarget(activeTarget);
+        cleanupTarget(activeTarget as Element);
       }
 
       spinTl.current?.kill();
       document.body.style.cursor = originalCursor;
     };
-  }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor]);
+  }, [
+    targetSelector,
+    spinDuration,
+    moveCursor,
+    constants,
+    hideDefaultCursor,
+    isMobile,
+  ]);
 
   useEffect(() => {
     if (!cursorRef.current || !spinTl.current) return;
@@ -341,6 +372,10 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       });
     }
   }, [spinDuration]);
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div ref={cursorRef} className="target-cursor-wrapper">

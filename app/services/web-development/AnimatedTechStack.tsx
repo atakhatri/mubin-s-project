@@ -273,8 +273,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           "relative overflow-x-hidden group",
           "[--logoloop-gap:32px]",
           "[--logoloop-logoHeight:28px]",
-          "[--logoloop-fadeColorAuto:#ffffff]",
-          "dark:[--logoloop-fadeColorAuto:#0b0b0b]",
+          "[--logoloop-fadeColorAuto:#000000]",
+          "dark:[--logoloop-fadeColorAuto:#000000]",
           scaleOnHover && "py-[calc(var(--logoloop-logoHeight)*0.1)]",
           className
         ),

@@ -34,8 +34,8 @@ export default function RootLayout({
         className={`${poppins.variable} ${roboto.variable} font-sans bg-background text-text-primary`}
       >
         <ThemeProvider>
-          <Navbar />
-          <div className="relative z-10 flex min-h-screen flex-col bg-transparent">
+          <div className="relative z-10 flex min-h-screen flex-col">
+            <Navbar />
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
