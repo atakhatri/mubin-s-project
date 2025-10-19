@@ -8,6 +8,7 @@ import {
   FaFileContract,
   FaFirstAid,
 } from "react-icons/fa";
+import AnimateOnScroll from "../../../components/providers/AnimateOnScroll";
 
 const services = [
   {
@@ -51,24 +52,26 @@ const services = [
 export default function SecurityServices() {
   return (
     <section className="py-16 sm:py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-16">
-          Our Core Security Services
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="group relative bg-background-secondary p-8 rounded-xl shadow-lg overflow-hidden border border-border-color transition-all duration-300 hover:border-primary hover:-translate-y-2"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-scanner"></div>
-              <service.icon className="h-10 w-10 text-primary mb-6" />
-              <h3 className="text-2xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-text-secondary">{service.description}</p>
-            </div>
-          ))}
+      <AnimateOnScroll animationClass="animate-fade-in-up">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-16">
+            Our Core Security Services
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="cursor-target group relative bg-background-secondary p-8 rounded-xl shadow-lg overflow-hidden border border-border-color transition-all duration-300 hover:border-primary hover:-translate-y-2"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-scanner"></div>
+                <service.icon className="h-10 w-10 text-primary mb-6" />
+                <h3 className="text-2xl font-semibold mb-3">{service.title}</h3>
+                <p className="text-text-secondary">{service.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </AnimateOnScroll>
     </section>
   );
 }

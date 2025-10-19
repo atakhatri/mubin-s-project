@@ -6,6 +6,7 @@ import { useState, useMemo } from "react";
 import Bubbles from "../../components/content/bubbles";
 import AnimateOnScroll from "../../components/providers/AnimateOnScroll";
 import { FaSearch, FaTag, FaCalendarAlt, FaUser } from "react-icons/fa";
+import TargetCursor from "../../components/ui/targetcursor";
 
 const caseStudies = [
   {
@@ -82,12 +83,13 @@ export default function CaseStudiesPage() {
   return (
     <div className="bg-background text-text-primary">
       {/* Header Section */}
+      <TargetCursor />
       <Bubbles />
       <AnimateOnScroll
         animationClass="animate-fade-in-up"
         className="container mx-auto px-4 text-center"
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
           Our Work in Action
         </h1>
         <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
@@ -109,7 +111,7 @@ export default function CaseStudiesPage() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+                  className={`cursor-target px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
                     activeCategory === category
                       ? "bg-teal-600 text-background"
                       : "bg-teal-900/40 hover:bg-primary/20"
@@ -119,7 +121,7 @@ export default function CaseStudiesPage() {
                 </button>
               ))}
             </div>
-            <div className="relative w-full sm:w-auto">
+            <div className="cursor-target relative w-full sm:w-auto">
               <input
                 type="text"
                 placeholder="Search studies..."
@@ -138,7 +140,7 @@ export default function CaseStudiesPage() {
               {featuredStudy && (
                 <Link
                   href={`/case-studies/${featuredStudy.slug}`}
-                  className="lg:col-span-3 group block bg-glass rounded-xl border border-border-color overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1"
+                  className="cursor-target lg:col-span-3 group block bg-glass rounded-xl border border-border-color overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1"
                 >
                   <div className="grid md:grid-cols-2">
                     <div className="relative aspect-video md:aspect-auto">
@@ -177,7 +179,7 @@ export default function CaseStudiesPage() {
                 <Link
                   key={study.slug}
                   href={`/case-studies/${study.slug}`}
-                  className="group block bg-glass rounded-xl border border-border-color overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+                  className="cursor-target group block bg-glass rounded-xl border border-border-color overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
                 >
                   <div className="relative aspect-video">
                     <Image
@@ -204,7 +206,7 @@ export default function CaseStudiesPage() {
       <section className="flex items-center justify-center bg-gradient-to-t from-teal-900 to-background-secondary min-h-[40vh] py-20 mt-16">
         <AnimateOnScroll animationClass="animate-fade-in-up">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-l from-teal-700 via-teal-500 to-green-500 text-transparent bg-clip-text">
               Ready to Start Your Next Project?
             </h2>
             <p className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
@@ -213,7 +215,7 @@ export default function CaseStudiesPage() {
             </p>
             <Link
               href="/contact"
-              className="btn-primary transition-transform duration-300 hover:scale-105"
+              className="btn-primary cursor-target transition-transform duration-300 hover:scale-105"
             >
               Let's Talk
             </Link>

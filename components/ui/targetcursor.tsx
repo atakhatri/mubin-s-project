@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import { gsap } from "gsap";
+import "./TargetCursor.css";
 
 export interface TargetCursorProps {
   targetSelector?: string;
@@ -19,7 +22,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const constants = useMemo(
     () => ({
       borderWidth: 3,
-      cornerSize: 12, // This will be the length of each "arm" of the L-shape
+      cornerSize: 12,
       parallaxStrength: 0.00005,
     }),
     []
@@ -340,108 +343,12 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   }, [spinDuration]);
 
   return (
-    <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
-      style={{ willChange: "transform" }}
-    >
-      <div
-        ref={dotRef}
-        className="absolute left-1/2 top-1/2 w-1 h-1 bg-primary rounded-full transform -translate-x-1/2 -translate-y-1/2"
-        style={{ willChange: "transform" }}
-      />
-      {/* Top-left corner */}
-      <svg
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-4 h-4 text-primary transform -translate-x-[150%] -translate-y-[150%]"
-        style={{ willChange: "transform" }}
-        viewBox="0 0 16 16"
-      >
-        <line
-          x1="15"
-          y1="1"
-          x2="1"
-          y2="1"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <line
-          x1="1"
-          y1="1"
-          x2="1"
-          y2="15"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
-      {/* Top-right corner */}
-      <svg
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-4 h-4 text-primary transform translate-x-1/2 -translate-y-[150%]"
-        style={{ willChange: "transform" }}
-        viewBox="0 0 16 16"
-      >
-        <line
-          x1="1"
-          y1="1"
-          x2="15"
-          y2="1"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <line
-          x1="15"
-          y1="1"
-          x2="15"
-          y2="15"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
-      {/* Bottom-right corner */}
-      <svg
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-4 h-4 text-primary transform translate-x-1/2 translate-y-1/2"
-        style={{ willChange: "transform" }}
-        viewBox="0 0 16 16"
-      >
-        <line
-          x1="1"
-          y1="15"
-          x2="15"
-          y2="15"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <line
-          x1="15"
-          y1="15"
-          x2="15"
-          y2="1"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
-      {/* Bottom-left corner */}
-      <svg
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-4 h-4 text-primary transform -translate-x-[150%] translate-y-1/2"
-        style={{ willChange: "transform" }}
-        viewBox="0 0 16 16"
-      >
-        <line
-          x1="15"
-          y1="15"
-          x2="1"
-          y2="15"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <line
-          x1="1"
-          y1="15"
-          x2="1"
-          y2="1"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
+    <div ref={cursorRef} className="target-cursor-wrapper">
+      <div ref={dotRef} className="target-cursor-dot" />
+      <div className="target-cursor-corner corner-tl" />
+      <div className="target-cursor-corner corner-tr" />
+      <div className="target-cursor-corner corner-br" />
+      <div className="target-cursor-corner corner-bl" />
     </div>
   );
 };

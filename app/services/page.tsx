@@ -74,7 +74,7 @@ export default function ServicesPage() {
       {/* Page Header Section */}
       <Bubbles />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-l from-teal-700 via-teal-500 to-green-500 text-transparent bg-clip-text">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
           Our Services
         </h1>
         <p className="text-xl text-text-secondary animate-fade-in-up animation-delay-200">
@@ -83,16 +83,23 @@ export default function ServicesPage() {
       </div>
 
       {/* Services Grid Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimateOnScroll
-          animationClass="animate-fade-in-up"
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-        </AnimateOnScroll>
+      <section className="py-20 bg-background-secondary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimateOnScroll
+            animationClass="animate-fade-in-up"
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl font-bold">Explore What We Offer</h2>
+            <p className="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+              From web development to IT infrastructure planning, we provide a
+              wide range of services to help your business thrive in the digital
+              age.
+            </p>
+          </AnimateOnScroll>
 
-        <ServicesGrid />
-      </div>
+          <ServicesGrid />
+        </div>
+      </section>
 
       <section className="flex items-center justify-center bg-gradient-to-t from-teal-900 to-background-secondary min-h-[40vh] py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

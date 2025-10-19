@@ -79,7 +79,7 @@ function ProjectCard({ project }: { project: (typeof projectTypes)[0] }) {
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       style={style as React.CSSProperties}
-      className="group relative bg-teal-900/50 p-8 rounded-xl shadow-lg transition-transform duration-200 ease-out will-change-transform"
+      className="cursor-target group relative bg-teal-900/50 p-8 rounded-xl shadow-lg transition-transform duration-200 ease-out will-change-transform"
     >
       <div className="relative z-10">
         <div className="flex items-center mb-4">

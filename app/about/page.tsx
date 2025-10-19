@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaBullseye, FaHandshake, FaLightbulb, FaUsers } from "react-icons/fa";
 import Bubbles from "../../components/content/bubbles";
 import { FaRocket } from "react-icons/fa";
+import TargetCursor from "../../components/ui/targetcursor";
 import { useState } from "react";
 import AnimateOnScroll from "../../components/providers/AnimateOnScroll";
 
@@ -114,6 +115,7 @@ export default function AboutPage() {
 
   return (
     <div className="bg-background">
+      <TargetCursor />
       {/* Hero Section */}
       <Bubbles />
       <AnimateOnScroll animationClass="animate-fade-in-up">
@@ -121,7 +123,7 @@ export default function AboutPage() {
           {/* <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-up">
             We Are TechSolutions
           </h1> */}
-          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-up">
+          <h1 className="text-4xl md:text-6xl font-bold mt-5 mb-4 animate-fade-in-up bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
             We Are TechSolutions
           </h1>
           <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
@@ -157,7 +159,7 @@ export default function AboutPage() {
               {missionItems.map((item, index) => (
                 <div
                   key={item.title}
-                  className={`p-6 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                  className={`cursor-target p-6 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
                     activeMissionIndex === index
                       ? "bg-background border-primary shadow-lg"
                       : "border-transparent hover:bg-background/50"
@@ -249,7 +251,7 @@ export default function AboutPage() {
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="bg-glass p-8 rounded-xl border border-border-color shadow-lg transition-all duration-300 group-hover:opacity-60 hover:!opacity-100 hover:scale-105 hover:border-primary"
+                  className="cursor-target bg-glass p-8 rounded-xl border border-border-color shadow-lg transition-all duration-300 group-hover:opacity-60 hover:!opacity-100 hover:scale-105 hover:border-primary"
                 >
                   <value.icon className="text-primary h-12 w-12 mx-auto mb-6" />
                   <h3 className="text-2xl font-semibold text-text-primary mb-2">

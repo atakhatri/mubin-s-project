@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Bubbles from "../../components/content/bubbles";
 import { FaCalendarAlt, FaUser, FaTag } from "react-icons/fa";
+import TargetCursor from "../../components/ui/targetcursor";
 
 // This is the same data as the main blog page.
 // In a real app, you would fetch this from a CMS or database.
@@ -32,6 +33,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="bg-background text-text-primary">
+      <TargetCursor />
       {/* Header */}
       <Bubbles />
       <div className="container mx-auto px-4 text-center">

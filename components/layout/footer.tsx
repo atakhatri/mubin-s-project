@@ -69,37 +69,33 @@ export default function Footer() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-target"
               aria-label="GitHub"
             >
-              <FaGithub className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+              <FaGithub className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
             <Link
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-target"
               aria-label="LinkedIn"
             >
-              <FaLinkedin className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+              <FaLinkedin className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
             <Link
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-target"
               aria-label="Twitter"
             >
-              <FaTwitter className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+              <FaTwitter className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
             <Link
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-target"
               aria-label="Facebook"
             >
-              <FaFacebook className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
+              <FaFacebook className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
           </div>
         </div>
@@ -107,31 +103,25 @@ export default function Footer() {
         {/* Right Section: Legal and Contact */}
         <div className="flex flex-col items-center md:items-end gap-4 py-12 bg-gradient-to-r from-background-secondary to-background-tertiary/50">
           <h2 className="text-2xl font-semibold text-text-primary">Legal</h2>
-          <div className="flex flex-wrap justify-center md:justify-end items-center gap-x-4 gap-y-2">
-            <Link
-              href="/privacy-policy"
-              className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
-            >
-              Privacy Policy
-            </Link>
-            <span className="text-text-secondary/50">|</span>
-            <Link
-              href="/security"
-              className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
-            >
-              Security
-            </Link>
-            <span className="text-text-secondary/50">|</span>
-            <Link
-              href="/terms"
-              className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
-            >
-              Terms & Conditions
-            </Link>
-          </div>
-          <p className="text-text-secondary/75 mt-4 text-xs">
-            © {new Date().getFullYear()} TechSolutions. All rights reserved.
-          </p>
+          <Link
+            href="/privacy-policy"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/security"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Security
+          </Link>
+          <Link
+            href="/terms"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+          >
+            Terms & Conditions
+          </Link>
+
           <hr className="w-full border-border-color my-2" />
           <a
             href="mailto:contact@techsolutions.com"
@@ -139,6 +129,9 @@ export default function Footer() {
           >
             contact@techsolutions.com
           </a>
+          <p className="text-text-secondary/75 mt-4 text-xs">
+            © {new Date().getFullYear()} TechSolutions. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

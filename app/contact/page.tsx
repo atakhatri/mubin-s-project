@@ -1,6 +1,8 @@
 "use client";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import Bubbles from "../../components/content/bubbles";
+import TargetCursor from "../../components/ui/targetcursor";
+
 interface FormData {
   name: string;
   email: string;
@@ -77,9 +79,10 @@ export default function ContactPage() {
 
   return (
     <div>
+      <TargetCursor />
       {/* Page Header Section */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
           Get in Touch
         </h1>
         <p className="text-xl text-text-secondary animate-fade-in-up animation-delay-200">
@@ -94,7 +97,7 @@ export default function ContactPage() {
           <div className="bg-glass p-6 md:p-8 rounded-xl border border-border-color glow-on-hover animate-fade-in-up animation-delay-400">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {formStatus.submitted ? (
-                <div className="text-center lg:col-span-2 flex flex-col items-center justify-center h-full">
+                <div className="cursor-target text-center lg:col-span-2 flex flex-col items-center justify-center h-full">
                   <svg
                     className="w-16 h-16 text-green-500 mb-4"
                     fill="none"
@@ -109,7 +112,7 @@ export default function ContactPage() {
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>
-                  <h3 className="text-2xl font-bold text-text-primary mb-2">
+                  <h3 className=" text-2xl font-bold text-text-primary mb-2">
                     Message Sent!
                   </h3>
                   <p className="text-text-secondary">{formStatus.message}</p>
@@ -130,7 +133,7 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="Your Name *"
-                          className={`w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 ${
+                          className={`cursor-target w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 ${
                             errors.name
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
@@ -149,7 +152,7 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="Your Email *"
-                          className={`w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 ${
+                          className={`cursor-target w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 ${
                             errors.email
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
@@ -166,7 +169,7 @@ export default function ContactPage() {
                           name="service"
                           value={formData.service}
                           onChange={handleChange}
-                          className={`w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 focus:outline-none focus:ring-2 ${
+                          className={`cursor-target w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 focus:outline-none focus:ring-2 ${
                             errors.service
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
@@ -192,7 +195,7 @@ export default function ContactPage() {
                           onChange={handleChange}
                           placeholder="Your Message *"
                           rows={4}
-                          className={`w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 ${
+                          className={`cursor-target w-full px-4 py-3 bg-gray-800/60 border rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 ${
                             errors.message
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
@@ -206,7 +209,7 @@ export default function ContactPage() {
                       </div>
                       <button
                         type="submit"
-                        className="btn-primary w-full mt-2 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="cursor-target btn-primary w-full mt-2 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
@@ -243,7 +246,7 @@ export default function ContactPage() {
               )}
               {/* Contact Info */}
               <div
-                className={`space-y-8 text-text-secondary flex flex-col justify-center ${
+                className={`cursor-target space-y-8 text-text-secondary flex flex-col justify-center ${
                   formStatus.submitted ? "hidden" : ""
                 }`}
               >
@@ -273,7 +276,7 @@ export default function ContactPage() {
       {/* Follow Us Section */}
       <section className="py-16 bg-gradient-to-t from-teal-900 to-background-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-3xl font-bold mb-6 text-primary">
+          <h3 className="text-3xl font-bold mb-6 bg-gradient-to-l from-teal-700 via-teal-500 to-green-500 text-transparent bg-clip-text">
             Follow Our Journey
           </h3>
           <p className="text-lg text-text-secondary mb-8">
@@ -284,7 +287,7 @@ export default function ContactPage() {
             <a
               href="#"
               aria-label="Instagram"
-              className="bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#E1306C] hover:bg-[#E1306C]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#E1306C]/30"
+              className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#E1306C] hover:bg-[#E1306C]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#E1306C]/30"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -305,7 +308,7 @@ export default function ContactPage() {
             <a
               href="#"
               aria-label="LinkedIn"
-              className="bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0A66C2]/30"
+              className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0A66C2]/30"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -326,7 +329,7 @@ export default function ContactPage() {
             <a
               href="#"
               aria-label="Facebook"
-              className="bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#1877F2] hover:bg-[#1877F2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#1877F2]/30"
+              className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#1877F2] hover:bg-[#1877F2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#1877F2]/30"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -345,7 +348,7 @@ export default function ContactPage() {
             <a
               href="#"
               aria-label="GitHub"
-              className="bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
+              className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
