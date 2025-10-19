@@ -20,17 +20,15 @@ export default function SecurityConsultancyPage() {
   return (
     <div>
       {/* Page Header */}
-      <section className="relative bg-gradient-to-b from-teal-900/70 to-background-secondary py-20 md:py-32 overflow-hidden">
-        <Bubbles />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
-            Security Consultancy
-          </h1>
-          <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
-            Fortifying Your Digital Frontier Against Tomorrow's Threats.
-          </p>
-        </div>
-      </section>
+      <Bubbles />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
+          Security Consultancy
+        </h1>
+        <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
+          Fortifying Your Digital Frontier Against Tomorrow's Threats.
+        </p>
+      </div>
 
       {/* Main Content */}
       <section className="py-16 md:py-20 bg-background-secondary">

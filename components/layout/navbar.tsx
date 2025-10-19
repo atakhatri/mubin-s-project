@@ -65,7 +65,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 p-2 md:p-4">
+    <header className="sticky top-0 z-50 p-2 md:p-4 bg-transparent">
       <nav
         className={`bg-background-secondary/80 backdrop-blur-lg rounded-xl border border-border-color shadow-lg transition-all duration-300 ${
           isScrolled ? "max-w-4xl mx-auto" : "max-w-7xl mx-auto"
@@ -76,7 +76,7 @@ export default function Navbar() {
             <div className="flex-shrink-0">
               <Link
                 href="/"
-                className="flex items-center gap-2 text-3xl font-bold text-primary transition-all duration-200 hover:scale-105 hover:opacity-90"
+                className="cursor-target flex items-center gap-2 text-3xl font-bold text-primary transition-all duration-200 hover:scale-105 hover:opacity-90"
               >
                 <Image
                   src="/logo.svg"
@@ -93,7 +93,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`nav-link-underline transition-colors duration-300 ${
+                  className={`cursor-target nav-link-underline transition-colors duration-300 ${
                     pathname === item.href
                       ? "text-primary font-semibold nav-link-active"
                       : "text-text-secondary hover:text-primary"
@@ -106,7 +106,7 @@ export default function Navbar() {
 
             <div className="flex md:hidden">
               <button
-                className="text-text-secondary hover:text-primary"
+                className="cursor-target text-text-secondary hover:text-primary"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 <MenuIcon open={mobileMenuOpen} />
@@ -122,7 +122,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`nav-link-underline block px-3 py-2 rounded-md transition-colors duration-300 ${
+                    className={`cursor-target nav-link-underline block px-3 py-2 rounded-md transition-colors duration-300 ${
                       pathname === item.href
                         ? "text-primary bg-primary/10 font-semibold"
                         : "text-text-secondary hover:text-primary"

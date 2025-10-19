@@ -1,65 +1,69 @@
-import { type Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import Bubbles from "../../components/content/bubbles";
+import { FaCalendarAlt, FaUser, FaTag } from "react-icons/fa";
 
-export const metadata: Metadata = {
-  title: "Case Studies | TechSolutions",
-  description:
-    "Explore our successful projects and see how we've helped our clients achieve their goals.",
-};
-
-const caseStudies = [
+// This is the same data as the main blog page.
+// In a real app, you would fetch this from a CMS or database.
+const blogPosts = [
   {
-    id: 1,
-    title: "E-commerce Platform Revamp for a Retail Giant",
-    category: "Web Development",
-    description:
-      "Overhauled a legacy e-commerce system, resulting in a 40% increase in conversion rates and a 60% improvement in page load times.",
+    slug: "demystifying-seo-for-beginners",
+    title: "Demystifying SEO: A Beginner's Guide to Ranking Higher",
+    category: "SEO",
+    author: "Jane Doe",
+    date: "2023-10-26",
+    image: "/blog/seo-guide.jpg",
+    content: `<p>Search Engine Optimization (SEO) is the practice of increasing the quantity and quality of traffic to your website through organic search engine results. This guide will walk you through the foundational pillars of SEO...</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.</p><h2>Understanding Keywords</h2><p>Keywords are the words and phrases that people type into search engines. As a website owner and content creator, you want the keywords on your page to be relevant to what people are searching for so they have a better chance of finding your content among the results.</p>`,
   },
-  {
-    id: 2,
-    title: "Cybersecurity Overhaul for a Financial Institution",
-    category: "Cybersecurity",
-    description:
-      "Implemented a multi-layered security strategy, successfully defending against all simulated and real-world threats since implementation.",
-  },
-  {
-    id: 3,
-    title: "CRM Implementation for a Growing SaaS Company",
-    category: "CRM Solutions",
-    description:
-      "Deployed a custom CRM solution that streamlined sales and support workflows, improving customer satisfaction by 30%.",
-  },
+  // ... add other post objects here with a 'content' property
 ];
 
-export default function CaseStudiesPage() {
-  return (
-    <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20">
-      <header className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
-          Our Work in Action
-        </h1>
-        <p className="mt-4 max-w-3xl mx-auto text-lg text-text-secondary">
-          Discover how we've transformed businesses with our innovative
-          technology solutions.
-        </p>
-      </header>
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post = blogPosts.find((p) => p.slug === params.slug);
 
-      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {caseStudies.map((study) => (
-          <div
-            key={study.id}
-            className="bg-background-secondary rounded-lg shadow-lg p-6 group transition-all duration-300 hover:shadow-primary/20 hover:scale-105"
-          >
-            <p className="text-sm font-semibold text-primary mb-2">
-              {study.category}
-            </p>
-            <h2 className="text-xl font-bold text-text-primary mb-3">
-              {study.title}
-            </h2>
-            <p className="text-text-secondary">{study.description}</p>
+  if (!post) {
+    // In a real app, you'd render a 404 page here.
+    return (
+      <div className="bg-background text-text-primary ps-8 py-16 text-center">
+        Post not found
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-background text-text-primary">
+      {/* Header */}
+      <Bubbles />
+      <div className="container mx-auto px-4 text-center">
+        <p className="text-primary font-semibold mb-2">{post.category}</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
+        <div className="flex justify-center items-center gap-6 text-text-secondary">
+          <span className="flex items-center gap-2">
+            <FaUser /> {post.author}
+          </span>
+          <span className="flex items-center gap-2">
+            <FaCalendarAlt /> {post.date}
+          </span>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <section className="py-16 sm:py-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="relative aspect-video mb-12 rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover"
+            />
           </div>
-        ))}
-      </main>
+          <div
+            className="prose prose-lg dark:prose-invert max-w-none mx-auto"
+            dangerouslySetInnerHTML={{ __html: post.content || "" }}
+          />
+        </div>
+      </section>
     </div>
   );
 }

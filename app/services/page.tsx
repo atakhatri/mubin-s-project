@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Bubbles from "../../components/content/bubbles";
+import ServicesGrid from "../../components/content/ServicesGrid";
+import AnimateOnScroll from "../../components/providers/AnimateOnScroll";
+import TargetCursor from "../../components/ui/targetcursor";
 import {
   FaCode,
   FaShieldAlt,
@@ -65,40 +70,29 @@ export default function ServicesPage() {
 
   return (
     <div>
+      <TargetCursor />
       {/* Page Header Section */}
-      <section className="relative bg-gradient-to-b from-teal-900 to-background-secondary py-20 md:py-32">
-        <Bubbles />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
-            Our Services
-          </h1>
-          <p className="text-xl text-text-secondary animate-fade-in-up animation-delay-200">
-            Comprehensive IT solutions designed to meet your business needs.
-          </p>
-        </div>
-      </section>
+      <Bubbles />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-l from-teal-700 via-teal-500 to-green-500 text-transparent bg-clip-text">
+          Our Services
+        </h1>
+        <p className="text-xl text-text-secondary animate-fade-in-up animation-delay-200">
+          Comprehensive IT solutions designed to meet your business needs.
+        </p>
+      </div>
 
-      <section className="py-20 bg-background-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up animation-delay-400">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <Link
-                key={service.href}
-                href={service.href}
-                className="glow-on-hover bg-glass p-6 rounded-lg border border-border-color hover:border-primary"
-              >
-                <div className="flex items-center mb-4">
-                  <service.icon className="h-6 w-6 text-primary mr-3" />
-                  <h3 className="text-xl font-semibold text-primary">
-                    {service.title}
-                  </h3>
-                </div>
-                <p className="text-text-secondary">{service.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Services Grid Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimateOnScroll
+          animationClass="animate-fade-in-up"
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+        </AnimateOnScroll>
+
+        <ServicesGrid />
+      </div>
 
       <section className="flex items-center justify-center bg-gradient-to-t from-teal-900 to-background-secondary min-h-[40vh] py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -108,7 +102,7 @@ export default function ServicesPage() {
           </h2>
           <Link
             href="/contact"
-            className="btn-primary animate-fade-in-up animation-delay-200"
+            className="btn-primary cursor-target animate-fade-in-up animation-delay-200"
           >
             Let's Talk
           </Link>

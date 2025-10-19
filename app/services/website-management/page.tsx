@@ -16,19 +16,16 @@ export default function WebsiteManagementPage() {
   return (
     <div>
       {/* Page Header */}
-      <section className="relative bg-gradient-to-b dark:from-teal-900 from-teal-200/50 to-background-secondary py-20 md:py-32">
-        <Bubbles />
-        <Bubbles />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
-            Website Management
-          </h1>
-          <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
-            Let us handle the technical details so you can focus on your
-            business.
-          </p>
-        </div>
-      </section>
+      <Bubbles />
+      <Bubbles />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
+          Website Management
+        </h1>
+        <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
+          Let us handle the technical details so you can focus on your business.
+        </p>
+      </div>
 
       {/* Main Content */}
       <section className="py-16 md:py-20 bg-background-secondary">

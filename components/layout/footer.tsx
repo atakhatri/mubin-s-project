@@ -13,37 +13,37 @@ export default function Footer() {
           </h2>
           <Link
             href="/"
-            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             About
           </Link>
           <Link
             href="/services"
-            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             Services
           </Link>
           <Link
             href="/case-studies"
-            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             Case Studies
           </Link>
           <Link
             href="/blog"
-            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             Blog
           </Link>
           <Link
             href="/contact"
-            className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+            className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             Contact
           </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
         <div className="relative flex flex-col items-center justify-around gap-8 bg-teal-900/20 border-x border-white">
           <Link
             href="/"
-            className="relative flex items-center justify-center text-3xl font-bold text-primary transition-all duration-200 hover:scale-105"
+            className="cursor-target relative flex items-center justify-center text-3xl font-bold text-primary transition-all duration-200 hover:scale-105"
           >
             <Image
               src="/logo.svg"
@@ -69,6 +69,7 @@ export default function Footer() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="cursor-target"
               aria-label="GitHub"
             >
               <FaGithub className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
@@ -77,6 +78,7 @@ export default function Footer() {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="cursor-target"
               aria-label="LinkedIn"
             >
               <FaLinkedin className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
@@ -85,6 +87,7 @@ export default function Footer() {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="cursor-target"
               aria-label="Twitter"
             >
               <FaTwitter className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
@@ -93,6 +96,7 @@ export default function Footer() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="cursor-target"
               aria-label="Facebook"
             >
               <FaFacebook className="h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
@@ -106,21 +110,21 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center md:justify-end items-center gap-x-4 gap-y-2">
             <Link
               href="/privacy-policy"
-              className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+              className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
             >
               Privacy Policy
             </Link>
             <span className="text-text-secondary/50">|</span>
             <Link
               href="/security"
-              className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+              className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
             >
               Security
             </Link>
             <span className="text-text-secondary/50">|</span>
             <Link
               href="/terms"
-              className="nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
+              className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
             >
               Terms & Conditions
             </Link>
@@ -131,7 +135,7 @@ export default function Footer() {
           <hr className="w-full border-border-color my-2" />
           <a
             href="mailto:contact@techsolutions.com"
-            className="text-text-secondary hover:text-text-primary transition-colors text-sm"
+            className="cursor-target text-text-secondary hover:text-text-primary transition-colors text-sm"
           >
             contact@techsolutions.com
           </a>

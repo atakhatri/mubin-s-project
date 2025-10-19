@@ -1,18 +1,26 @@
-import type { FC } from 'react';
+import { FaQuoteLeft } from "react-icons/fa";
 
-interface TestimonialProps {
+interface TestimonialCardProps {
   text: string;
   author: string;
   company: string;
 }
 
-const Testimonial: FC<TestimonialProps> = ({ text, author, company }) => {
+export default function TestimonialCard({
+  text,
+  author,
+  company,
+}: TestimonialCardProps) {
   return (
-    <div className="bg-background-secondary p-6 rounded-lg border border-border-color">
-      <p className="text-text-secondary italic mb-4">"{text}"</p>
-      <p className="font-semibold text-primary">{author}, <span className="font-normal text-text-secondary">{company}</span></p>
+    <div className="bg-glass p-8 rounded-xl border border-border-color shadow-lg h-full flex flex-col">
+      <FaQuoteLeft className="text-primary text-3xl mb-4" />
+      <p className="text-text-secondary text-lg italic mb-6 flex-grow">
+        "{text}"
+      </p>
+      <div className="mt-auto">
+        <p className="font-bold text-text-primary">{author}</p>
+        <p className="text-sm text-text-secondary">{company}</p>
+      </div>
     </div>
   );
-};
-
-export default Testimonial;
+}

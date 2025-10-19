@@ -22,19 +22,17 @@ export default function WebDevelopmentPage() {
   return (
     <div className="bg-background text-text-primary">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-teal-900 to-background-secondary py-20 md:py-28 text-center">
-        <Bubbles />
-        <Bubbles />
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-up">
-            Web Development
-          </h1>
-          <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
-            Crafting beautiful, high-performance websites that drive growth and
-            engage your audience.
-          </p>
-        </div>
-      </section>
+      <Bubbles />
+      <Bubbles />
+      <div className="container mx-auto px-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-up">
+          Web Development
+        </h1>
+        <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
+          Crafting beautiful, high-performance websites that drive growth and
+          engage your audience.
+        </p>
+      </div>
 
       {/* Introduction */}
       <Introduction />

@@ -1,87 +1,99 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Bubbles from "../../../components/content/bubbles";
-import AnimatedHeadline from "./AnimatedHeadline";
+import AnimatedHeadline from "../seo-services/AnimatedHeadline";
 import {
-  FaSearch,
-  FaWrench,
+  FaHubspot,
+  FaSalesforce,
   FaLink,
-  FaPen,
+  FaSyncAlt,
   FaChartBar,
-  FaLightbulb,
+  FaCode,
+  FaCogs,
   FaUsers,
   FaBullseye,
+  FaLightbulb,
 } from "react-icons/fa";
+import { SiZendesk, SiMailchimp, SiShopify } from "react-icons/si";
 
-const floatingIcons = [FaLink, FaChartBar, FaSearch, FaPen, FaWrench];
+const floatingIcons = [FaHubspot, FaSalesforce, FaLink, FaSyncAlt, FaChartBar];
 
 const headerContent = {
   phrases: [
-    "Dominate Search Rankings with Our SEO Services",
-    "Drive Organic Growth with Our SEO Services",
-    "Boost Your Revenue with Our SEO Services",
+    "Unify Your Business Data with Seamless Integrations",
+    "Automate Your Workflows with Seamless Integrations",
+    "Supercharge Your CRM with Seamless Integrations",
   ],
+  suffix: "",
   subtitle:
-    "Attract qualified leads and increase your revenue with our data-driven SEO strategies.",
-  cta: "Get Your Free SEO Audit",
+    "Connect your CRM to the tools you use every day. Eliminate data silos, automate tasks, and create a single source of truth for your customer data.",
+  cta: "Get a Free Integration Quote",
 };
 
-const services = [
+const integrationServices = [
   {
-    icon: FaSearch,
-    title: "Keyword Research & Strategy",
+    icon: FaCode,
+    title: "Custom API Development",
     description:
-      "We identify high-value keywords to target the right audience and drive relevant traffic.",
+      "We build bespoke API connections to link your CRM with any third-party application, no matter how unique.",
   },
   {
-    icon: FaWrench,
-    title: "On-Page & Technical SEO",
+    icon: FaCogs,
+    title: "Workflow Automation",
     description:
-      "Optimizing your site's structure, content, and code for search engine crawlers and users.",
+      "Automate repetitive tasks between your CRM and other platforms like email marketing, accounting, and project management.",
   },
   {
-    icon: FaLink,
-    title: "Link Building",
+    icon: FaSyncAlt,
+    title: "Data Synchronization",
     description:
-      "Building high-quality backlinks to establish your site's authority and improve rankings.",
+      "Ensure data consistency across all your platforms with real-time, two-way data synchronization.",
   },
   {
-    icon: FaPen,
-    title: "Content Marketing",
+    icon: FaChartBar,
+    title: "Analytics & Reporting",
     description:
-      "Creating valuable content that attracts, engages, and converts your target audience.",
+      "Consolidate data from various sources into your CRM for a complete view of your business performance.",
   },
 ];
 
-const whyUsItems = [
-  {
-    icon: FaChartBar,
-    title: "Data-Driven Approach",
-    description:
-      "We use advanced analytics to make informed decisions and track what's working, ensuring your strategy is always optimized for performance.",
-  },
+const whyIntegrateItems = [
   {
     icon: FaLightbulb,
-    title: "Transparent Reporting",
+    title: "Eliminate Data Silos",
     description:
-      "You'll receive regular, easy-to-understand reports on your campaign's progress, so you're always in the loop on your SEO performance.",
+      "Create a single source of truth by ensuring all your departments are working with the same, up-to-date customer information.",
   },
   {
     icon: FaBullseye,
-    title: "Focus on ROI",
+    title: "Increase Productivity",
     description:
-      "Our ultimate goal is to deliver a significant return on your investment. We focus on metrics that matter to your bottom line.",
+      "Automate manual data entry and repetitive tasks, freeing up your team to focus on high-value activities like selling and customer support.",
+  },
+  {
+    icon: FaUsers,
+    title: "Enhance Customer View",
+    description:
+      "Gain a 360-degree view of your customers by combining sales, marketing, and support data in one central location.",
   },
 ];
 
-export default function SeoServicesPage() {
+const popularIntegrations = [
+  { name: "Salesforce", icon: FaSalesforce },
+  { name: "HubSpot", icon: FaHubspot },
+  { name: "Zendesk", icon: SiZendesk },
+  { name: "Mailchimp", icon: SiMailchimp },
+  { name: "Shopify", icon: SiShopify },
+];
+
+export default function CrmIntegrationsPage() {
   const [activeWhyUsIndex, setActiveWhyUsIndex] = useState(0);
 
   return (
-    <div className="bg-background-secondary text-text-primary">
-      {/* Page Header Section */}
-      <Bubbles />
+    <div>
+      {/* Page Header */}
       <Bubbles />
       <Bubbles />
       <div className="absolute inset-0 -z-10">
@@ -103,7 +115,7 @@ export default function SeoServicesPage() {
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         <AnimatedHeadline
           phrases={headerContent.phrases}
-          suffix=""
+          suffix={headerContent.suffix}
           className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up min-h-[100px] md:min-h-[150px]"
         />
         <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
@@ -119,22 +131,20 @@ export default function SeoServicesPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <section className="py-20 bg-background-secondary">
+      {/* What We Offer Section */}
+      <section className="py-16 md:py-20 bg-background-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* What We Offer Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-up">
-              Our Comprehensive SEO Solutions
+              Our CRM Integration Services
             </h2>
             <p className="text-lg text-text-secondary max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
-              We cover every angle of search engine optimization to ensure your
-              website not only ranks, but also converts.
+              We connect your systems to create a powerful, unified ecosystem
+              that drives efficiency and growth.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
+            {integrationServices.map((service, index) => (
               <div
                 key={service.title}
                 className="cursor-target group relative overflow-hidden rounded-lg border border-border-color bg-glass p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-up"
@@ -150,21 +160,21 @@ export default function SeoServicesPage() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Integrate Section */}
       <section className="py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-up">
-              Why Partner With Us?
+              Why Integrate Your CRM?
             </h2>
             <p className="text-lg text-text-secondary max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
-              Our approach is different. We focus on sustainable growth and
-              measurable results.
+              Unlock the true potential of your customer data and streamline
+              your operations.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="space-y-4">
-              {whyUsItems.map((item, index) => (
+              {whyIntegrateItems.map((item, index) => (
                 <div
                   key={item.title}
                   className={`p-6 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
@@ -196,16 +206,36 @@ export default function SeoServicesPage() {
               ))}
             </div>
             <div className="relative h-96 animate-fade-in animation-delay-600">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary to-teal-500 rounded-lg transform -rotate-3"></div>
-              <div className="relative h-full bg-background-primary rounded-lg p-8 flex flex-col justify-center items-center text-center shadow-2xl">
-                <FaUsers className="h-16 w-16 text-primary mb-4" />
-                <h3 className="text-2xl font-bold">Your Growth Partner</h3>
-                <p className="text-text-secondary mt-2">
-                  We work as an extension of your team, dedicated to your
-                  success.
-                </p>
-              </div>
+              <Image
+                src="/crm-integration.svg"
+                alt="CRM Integration Graphic"
+                width={400}
+                height={400}
+                className=" object-contain border rounded-xl"
+              />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Platforms Section */}
+      <section className="py-16 sm:py-20 bg-gradient-to-t from-teal-900 to-background-secondary">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Popular Platforms We Integrate
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+            {popularIntegrations.map((platform) => (
+              <div
+                key={platform.name}
+                className="cursor-target group flex flex-col items-center gap-3 text-center"
+              >
+                <platform.icon className="h-16 w-16 text-text-secondary transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                <span className="font-semibold text-text-secondary transition-colors duration-300 group-hover:text-primary">
+                  {platform.name}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

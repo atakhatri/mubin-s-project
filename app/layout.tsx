@@ -34,7 +34,14 @@ export default function RootLayout({
         <body
           className={`${poppins.variable} ${roboto.variable} font-sans bg-background text-text-primary`}
         >
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen relative">
+            {/* Emerald Radial Glow Background */}
+            <div
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: `radial-gradient(circle 500px at 50% 300px, rgba(16,185,129,0.35), transparent)`,
+              }}
+            />
             <Navbar />
             <main className="flex-grow">{children}</main>
             <BackToTopButton />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Bubbles from "../../../components/content/bubbles";
+import CyberGlobe from "./CyberGlobe";
 import PlanningProcess from "./PlanningProcess";
 import InfrastructureServices from "./InfrastructureServices";
 import InfrastructureTechnologies from "./InfrastructureTechnologies";
@@ -11,23 +12,20 @@ import {
   FaRocket,
   FaClipboardList,
 } from "react-icons/fa";
-import CyberGlobe from "./CyberGlobe";
 
 export default function ItInfrastructurePlanningPage() {
   return (
     <div>
       {/* Page Header */}
-      <section className="relative bg-gradient-to-b from-teal-900/70 to-background-secondary py-20 md:py-32 overflow-hidden">
-        <Bubbles />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
-            IT Infrastructure Planning
-          </h1>
-          <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
-            Architecting the Backbone of Your Digital Enterprise.
-          </p>
-        </div>
-      </section>
+      <Bubbles />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
+          IT Infrastructure Planning
+        </h1>
+        <p className="text-xl text-text-secondary mb-8 animate-fade-in-up animation-delay-200">
+          Architecting the Backbone of Your Digital Enterprise.
+        </p>
+      </div>
 
       {/* Main Content */}
       <section className="py-16 md:py-20 bg-background-secondary">
