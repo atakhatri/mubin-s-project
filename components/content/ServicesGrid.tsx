@@ -53,17 +53,20 @@ export default function ServicesGrid() {
       {services.map((s) => (
         <div
           key={s.title}
-          className="cursor-target bg-black backdrop-blur-md border border-card-border rounded-lg p-6 flex flex-col items-start hover:shadow-lg hover:scale-105 transition-transform duration-300"
+          className="cursor-target group relative bg-glass border border-border-color rounded-lg p-6 flex flex-col items-start hover:shadow-lg hover:scale-105 transition-transform duration-300 overflow-hidden"
         >
-          <s.icon className="h-10 w-10 text-primary mb-4" />
-          <h3 className="text-2xl font-semibold mb-2">{s.title}</h3>
-          <p className="text-text-secondary mb-6">{s.desc}</p>
-          <Link
-            href={s.href}
-            className="cursor-target font-semibold text-primary inline-block transition-transform duration-300 hover:translate-x-1"
-          >
-            Learn More &rarr;
-          </Link>
+          <div className="absolute inset-0 bg-dot-pattern opacity-[0.03] group-hover:opacity-[0.05] transition-opacity duration-300"></div>
+          <div className="relative z-10 flex flex-col flex-grow">
+            <s.icon className="h-10 w-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-1 group-hover:rotate-12" />
+            <h3 className="text-2xl font-semibold mb-2">{s.title}</h3>
+            <p className="text-text-secondary mb-6 flex-grow">{s.desc}</p>
+            <Link
+              href={s.href}
+              className="cursor-target mt-auto font-semibold text-primary inline-block transition-transform duration-300 hover:translate-x-1"
+            >
+              Learn More &rarr;
+            </Link>
+          </div>
         </div>
       ))}
     </div>

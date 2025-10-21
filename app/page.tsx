@@ -56,7 +56,7 @@ export default function Home() {
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 m-auto max-w-2xl h-[400px] bg-teal-700/40 rounded-full blur-3xl animate-blob-pulse"
+          className="absolute inset-0 -z-10 m-auto max-w-2xl"
         ></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
