@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border-color footer-glow">
+    <footer className="border-t border-border-color footer-glow bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Left Section: Page Links */}
         <div className="flex flex-col items-center md:items-start gap-4 py-12">

@@ -6,6 +6,7 @@ import ServicesGrid from "../components/content/ServicesGrid";
 import AnimateOnScroll from "../components/providers/AnimateOnScroll";
 import Testimonials from "../components/content/Testimonials";
 import { useState } from "react";
+import GradientText from "@/components/animated-text/GradientText";
 import {
   FaCode,
   FaShieldAlt,

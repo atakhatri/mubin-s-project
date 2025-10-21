@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useMemo } from "react";
-import Bubbles from "../../components/content/bubbles";
+import { useState, useMemo, Fragment } from "react";
+import Bubbles from "../../components/animated-bg/bubbles";
 import AnimateOnScroll from "../../components/providers/AnimateOnScroll";
 import { FaSearch, FaTag, FaCalendarAlt, FaUser } from "react-icons/fa";
 import TargetCursor from "../../components/ui/targetcursor";
+import { motion, AnimatePresence } from "framer-motion";
 
 const caseStudies = [
   {
@@ -15,7 +16,7 @@ const caseStudies = [
     category: "Web Development",
     author: "Mubin Ansari",
     date: "2023-09-18",
-    image: "/case-studies/ecommerce.jpg",
+    image: "/earth-map.jpg",
     excerpt:
       "Overhauled a legacy e-commerce system, resulting in a 40% increase in conversion rates and a 60% improvement in page load times.",
     featured: true,
@@ -26,7 +27,7 @@ const caseStudies = [
     category: "Cybersecurity",
     author: "Jane Doe",
     date: "2023-08-22",
-    image: "/case-studies/cybersecurity.jpg",
+    image: "/cybersecurity.jpg",
     excerpt:
       "Implemented a multi-layered security strategy, successfully defending against all simulated and real-world threats since implementation.",
   },
@@ -36,7 +37,7 @@ const caseStudies = [
     category: "CRM Solutions",
     author: "John Smith",
     date: "2023-07-10",
-    image: "/case-studies/crm.jpg",
+    image: "/crm.jpg",
     excerpt:
       "Deployed a custom CRM solution that streamlined sales and support workflows, improving customer satisfaction by 30%.",
   },
@@ -46,7 +47,7 @@ const caseStudies = [
     category: "IT Infrastructure",
     author: "Mubin Ansari",
     date: "2023-06-01",
-    image: "/case-studies/infrastructure.jpg",
+    image: "/infrastructure.jpg",
     excerpt:
       "Designed and deployed a cloud-native infrastructure that supports rapid scaling, reducing operational costs by 25%.",
   },
@@ -174,29 +175,51 @@ export default function CaseStudiesPage() {
                 </Link>
               )}
 
-              {/* Other Studies */}
-              {filteredStudies.map((study) => (
-                <Link
-                  key={study.slug}
-                  href={`/case-studies/${study.slug}`}
-                  className="cursor-target group block bg-glass rounded-xl border border-border-color overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
-                >
-                  <div className="relative aspect-video">
-                    <Image
-                      src={study.image}
-                      alt={study.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-2">
-                      {study.category}
-                    </span>
-                    <h3 className="font-bold text-lg">{study.title}</h3>
-                  </div>
-                </Link>
-              ))}
+              <AnimatePresence>
+                {/* Other Studies */}
+                {filteredStudies.map((study) => (
+                  <motion.div
+                    key={study.slug}
+                    layout
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <Link
+                      href={`/case-studies/${study.slug}`}
+                      className="cursor-target group block bg-glass rounded-xl border border-border-color overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 h-full"
+                    >
+                      <div className="relative aspect-video">
+                        <Image
+                          src={study.image}
+                          alt={study.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-2">
+                          {study.category}
+                        </span>
+                        <h3 className="font-bold text-lg">{study.title}</h3>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* No Results Found */}
+              {filteredStudies.length === 0 && (
+                <div className="lg:col-span-3 text-center py-16">
+                  <h3 className="text-2xl font-semibold mb-2">
+                    No Case Studies Found
+                  </h3>
+                  <p className="text-text-secondary">
+                    Try adjusting your search or filter criteria.
+                  </p>
+                </div>
+              )}
             </div>
           </AnimateOnScroll>
         </div>
