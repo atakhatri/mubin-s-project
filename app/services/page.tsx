@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Bubbles from "../../components/content/bubbles";
 import ServicesGrid from "../../components/content/ServicesGrid";
 import AnimateOnScroll from "../../components/providers/AnimateOnScroll";
 import TargetCursor from "../../components/ui/targetcursor";
@@ -72,7 +71,6 @@ export default function ServicesPage() {
     <div>
       <TargetCursor />
       {/* Page Header Section */}
-      <Bubbles />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
           Our Services

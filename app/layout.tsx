@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.scss";
 import { Poppins, Roboto } from "next/font/google";
 import Navbar from "../components/layout/navbar";
 import Footer from "../components/layout/footer";
 import BackToTopButton from "../components/ui/back-to-top";
 import { ThemeProvider } from "../components/providers/theme-provider";
+import Starfield from "../components/content/Starfield";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,9 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${poppins.variable} ${roboto.variable} font-sans bg-background text-text-primary`}
+        className={`${poppins.variable} ${roboto.variable} font-sans bg-background text-text-primary relative`}
       >
         <ThemeProvider>
+          <Starfield />
           <div className="relative z-10 flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-grow">{children}</main>

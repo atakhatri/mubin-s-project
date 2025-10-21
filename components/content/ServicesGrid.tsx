@@ -53,7 +53,7 @@ export default function ServicesGrid() {
       {services.map((s) => (
         <div
           key={s.title}
-          className="cursor-target bg-card-bg/60 backdrop-blur-md border border-card-border rounded-lg p-6 flex flex-col items-start hover:shadow-lg hover:scale-105 transition-transform duration-300"
+          className="cursor-target bg-black backdrop-blur-md border border-card-border rounded-lg p-6 flex flex-col items-start hover:shadow-lg hover:scale-105 transition-transform duration-300"
         >
           <s.icon className="h-10 w-10 text-primary mb-4" />
           <h3 className="text-2xl font-semibold mb-2">{s.title}</h3>

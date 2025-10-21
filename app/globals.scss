@@ -580,3 +580,49 @@ button {
   border-right: none;
   border-top: none;
 }
+
+/* Starfield Background */
+@function multiple-box-shadow($n) {
+  $value: "#{random(3000)}px #{random(3000)}px #FFF";
+  @for $i from 2 through $n {
+    $value: "#{$value} , #{random(3000)}px #{random(3000)}px #FFF";
+  }
+  @return unquote($value);
+}
+
+$shadows-sm: multiple-box-shadow(1000);
+$shadows-md: multiple-box-shadow(300);
+$shadows-lg: multiple-box-shadow(100);
+
+#stars-sm {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: $shadows-sm;
+  animation: animStar 200s alternate-reverse infinite;
+}
+
+#stars-md {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: $shadows-md;
+  animation: animStar 300s alternate-reverse infinite;
+}
+
+#stars-lg {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: $shadows-lg;
+  animation: animStar 400s alternate infinite;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
