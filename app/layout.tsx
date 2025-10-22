@@ -6,6 +6,7 @@ import Footer from "../components/layout/footer";
 import BackToTopButton from "../components/ui/back-to-top";
 import { ThemeProvider } from "../components/providers/theme-provider";
 import Starfield from "@/components/animated-bg/Starfield";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -38,7 +39,9 @@ export default function RootLayout({
           <Starfield />
           <div className="relative z-10 flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow">
+              {children} <Analytics />
+            </main>
             <Footer />
           </div>
           <BackToTopButton />
