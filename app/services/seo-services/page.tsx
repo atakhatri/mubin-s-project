@@ -81,7 +81,7 @@ export default function SeoServicesPage() {
   const [activeWhyUsIndex, setActiveWhyUsIndex] = useState(0);
 
   return (
-    <div className="bg-background-secondary text-text-primary">
+    <div className="bg-background-secondary text-text-primary overflow-x-hidden">
       <TargetCursor />
       {/* Page Header Section */}
       <Bubbles />

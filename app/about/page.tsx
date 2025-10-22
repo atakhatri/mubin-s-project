@@ -7,6 +7,7 @@ import { FaRocket } from "react-icons/fa";
 import TargetCursor from "../../components/ui/targetcursor";
 import { useState } from "react";
 import AnimateOnScroll from "../../components/providers/AnimateOnScroll";
+import Timeline from "./TimeLine";
 
 const teamMembers = [
   {
@@ -80,33 +81,6 @@ const missionItems = [
   },
 ];
 
-const timelineEvents = [
-  {
-    year: "2015",
-    title: "The Genesis",
-    description:
-      "TechSolutions was founded with a mission to provide cutting-edge IT solutions for small and medium-sized businesses.",
-  },
-  {
-    year: "2017",
-    title: "First Major Project",
-    description:
-      "Landed our first enterprise-level client, successfully overhauling their entire digital infrastructure.",
-  },
-  {
-    year: "2019",
-    title: "Expanding Horizons",
-    description:
-      "Opened our second office and expanded our service offerings to include cloud computing and cybersecurity.",
-  },
-  {
-    year: "2023",
-    title: "Going Global",
-    description:
-      "Established a global presence, serving clients across three continents and continuing to grow our team.",
-  },
-];
-
 export default function AboutPage() {
   const [activeMissionIndex, setActiveMissionIndex] = useState(0);
   const [flippedTeamMember, setFlippedTeamMember] = useState<string | null>(
@@ -114,12 +88,12 @@ export default function AboutPage() {
   );
 
   return (
-    <div className="bg-background">
+    <div className="bg-background overflow-x-hidden">
       <TargetCursor />
       {/* Hero Section */}
       <Bubbles />
       <AnimateOnScroll animationClass="animate-fade-in-up">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center mt-20">
           {/* <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-up">
             We Are TechSolutions
           </h1> */}
@@ -161,7 +135,7 @@ export default function AboutPage() {
                   key={item.title}
                   className={`cursor-target p-6 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
                     activeMissionIndex === index
-                      ? "bg-background border-primary shadow-lg"
+                      ? "bg-background border-primary shadow-lg "
                       : "border-transparent hover:bg-background/50"
                   }`}
                   onClick={() => setActiveMissionIndex(index)}
@@ -192,50 +166,7 @@ export default function AboutPage() {
       </section>
 
       {/* Company Timeline Section */}
-      <section className="hidden md:block py-16 sm:py-20 lg:py-24">
-        <div className="container mx-auto px-4">
-          <AnimateOnScroll animationClass="animate-fade-in-up">
-            <h2 className="text-3xl font-bold text-center text-text-primary mb-16">
-              Our Journey Through Time
-            </h2>
-          </AnimateOnScroll>
-          <div className="relative">
-            {/* The vertical line */}
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-border-color"></div>
-
-            {timelineEvents.map((event, index) => (
-              <AnimateOnScroll
-                key={index}
-                animationClass="animate-fade-in-up"
-                className="mb-12"
-              >
-                <div
-                  className={`flex items-center w-full ${
-                    index % 2 === 0 ? "flex-row-reverse" : ""
-                  }`}
-                >
-                  <div className="w-1/2 px-8"></div>
-                  <div
-                    className={`w-1/2 px-8 ${
-                      index % 2 === 0 ? "text-left" : "text-right"
-                    }`}
-                  >
-                    <div className="relative bg-glass p-6 rounded-lg border border-border-color shadow-lg timeline-item-content right">
-                      <div className="text-primary font-bold text-xl mb-2">
-                        {event.year}
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        {event.title}
-                      </h3>
-                      <p className="text-text-secondary">{event.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Timeline />
 
       {/* Our Values Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-background-secondary bg-dot-pattern">
@@ -270,7 +201,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <AnimateOnScroll animationClass="animate-fade-in-up">
             <h2 className="text-3xl font-bold text-center text-text-primary mb-12">
-              Meet Our Leadership
+              Meet Our Leadership (dummy data)
             </h2>
           </AnimateOnScroll>
           <AnimateOnScroll animationClass="animate-fade-in-up">

@@ -10,7 +10,7 @@ import AnimateOnScroll from "../../../components/providers/AnimateOnScroll";
 
 export default function ItInfrastructurePlanningPage() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <TargetCursor />
       {/* Page Header */}
       <Bubbles />
@@ -49,7 +49,7 @@ export default function ItInfrastructurePlanningPage() {
                   your technology can keep pace with your ambition.
                 </p>
               </div>
-              <div className="cursor-target">
+              <div className="cursor-target hidden md:block">
                 <CyberGlobe />
               </div>
             </div>

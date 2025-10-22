@@ -429,7 +429,7 @@ export default function ContactPage() {
             </a>
             {/* LinkedIn */}
             <a
-              href="#" // Replace with your actual LinkedIn link
+              href="https://www.linkedin.com/in/ata-khatri/" // Replace with your actual LinkedIn link
               aria-label="LinkedIn"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0A66C2]/30"
             >
@@ -451,7 +451,7 @@ export default function ContactPage() {
             </a>
             {/* Facebook */}
             <a
-              href="#" // Replace with your actual Facebook link
+              href="https://www.facebook.com/profile.php?id=100089441212445" // Replace with your actual Facebook link
               aria-label="Facebook"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#1877F2] hover:bg-[#1877F2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#1877F2]/30"
             >
@@ -471,7 +471,7 @@ export default function ContactPage() {
             </a>
             {/* GitHub */}
             <a
-              href="#" // Replace with your actual GitHub link
+              href="https://github.com/atakhatri" // Replace with your actual GitHub link
               aria-label="GitHub"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
             >

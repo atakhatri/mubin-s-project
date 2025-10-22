@@ -94,7 +94,7 @@ export default function CrmIntegrationsPage() {
   const [activeWhyUsIndex, setActiveWhyUsIndex] = useState(0);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <TargetCursor />
       {/* Page Header */}
       <Bubbles />

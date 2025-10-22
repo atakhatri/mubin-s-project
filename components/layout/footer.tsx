@@ -66,7 +66,7 @@ export default function Footer() {
           </Link>
           <div className="flex space-x-6 bg-primary/10 p-3 rounded-full border-2 animate-border-spin">
             <Link
-              href="https://github.com"
+              href="https://github.com/atakhatri"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -74,7 +74,7 @@ export default function Footer() {
               <FaGithub className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
             <Link
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/ata-khatri/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -82,15 +82,15 @@ export default function Footer() {
               <FaLinkedin className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
             <Link
-              href="https://twitter.com"
+              href="https://x.com/KhatriAta"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="X"
             >
               <FaTwitter className="cursor-target h-6 w-6 text-primary transition-all duration-300 hover:text-white hover:scale-125" />
             </Link>
             <Link
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=100089441212445"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"

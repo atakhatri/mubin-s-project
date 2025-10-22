@@ -1,12 +1,13 @@
 "use client";
 
+import { useRef } from "react";
 import {
   FaClipboardList,
   FaDraftingCompass,
   FaHardHat,
   FaRocket,
 } from "react-icons/fa";
-import AnimateOnScroll from "../../../components/providers/AnimateOnScroll";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 
 const processSteps = [
   {
@@ -31,57 +32,98 @@ const processSteps = [
   },
 ];
 
-export default function PlanningProcess() {
+const ProcessStepItem = ({ step, index }: { step: any; index: number }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center center"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [index % 2 === 0 ? "-50%" : "50%", "0%"]
+  );
+
   return (
-    <section className="py-16 sm:py-20 bg-background-secondary">
-      <AnimateOnScroll animationClass="animate-fade-in-up">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">
-            Our Planning Process
-          </h2>
-          <div className="relative max-w-2xl mx-auto">
-            <div
-              className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 animate-line-draw-y"
-              style={{ transformOrigin: "top" }}
-            ></div>
-            {processSteps.map((step, i) => (
-              <div
-                key={step.title}
-                className="relative flex items-center mb-12 animate-fade-in-up"
-                style={{ animationDelay: `${i * 200}ms` }}
-              >
-                <div
-                  className={`cursor-target hidden md:block w-1/2 pr-8 text-right ${
-                    i % 2 !== 0 ? "opacity-0" : ""
-                  }`}
-                >
-                  <h3 className="text-xl font-semibold">{step.title}</h3>
-                  <p className="text-text-secondary mt-1">{step.desc}</p>
-                </div>
-                <div className="absolute left-1/2 -translate-x-1/2 bg-background-secondary p-2 rounded-full z-10">
-                  <div className="cursor-target bg-primary text-white h-12 w-12 rounded-full flex items-center justify-center">
+    <motion.div
+      ref={ref}
+      style={{ scale, opacity, x }}
+      className={`relative flex items-center w-full mb-16 last:mb-0 ${
+        index % 2 === 0 ? "" : "md:flex-row-reverse"
+      }`}
+    >
+      {/* Card */}
+      <div className="w-full md:w-1/2">
+        <div
+          className={`group cursor-target relative bg-glass p-6 rounded-lg border border-border-color shadow-lg transition-all duration-300 hover:border-primary/80 hover:shadow-primary/10 hover:-translate-y-1 ${
+            index % 2 === 0 ? "md:mr-12" : "md:ml-12 md:text-right"
+          }`}
+        >
+          <div className="flex items-start gap-4 md:block">
+            <div className="md:hidden shrink-0">
+              <step.icon className="h-8 w-8 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              <p className="text-text-secondary">{step.desc}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Connector */}
+      <div className="hidden md:block w-12 h-0.5 bg-border-color"></div>
+    </motion.div>
+  );
+};
+
+export default function PlanningProcess() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"],
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <section ref={ref} className="py-20 sm:py-24 bg-background-secondary">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-20">
+          Our Planning Process
+        </h2>
+        <div className="relative max-w-4xl mx-auto">
+          {/* Timeline Line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-border-color/30" />
+          <motion.div
+            className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-gradient-to-b from-primary to-teal-400"
+            style={{ height: lineHeight }}
+          />
+
+          {processSteps.map((step, i) => (
+            <div key={step.title} className="relative">
+              {/* Mobile view is handled inside ProcessStepItem now */}
+              <div className="md:hidden">
+                <ProcessStepItem step={step} index={0} />
+              </div>
+              {/* Desktop view */}
+              <div className="hidden md:block">
+                <ProcessStepItem step={step} index={i} />
+              </div>
+              {/* Central Icon (Desktop Only) */}
+              <div className="hidden md:block">
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background-secondary p-1 rounded-full z-10">
+                  <div className="cursor-target bg-primary text-white h-12 w-12 rounded-full flex items-center justify-center ring-8 ring-background-secondary">
                     <step.icon className="h-6 w-6" />
                   </div>
                 </div>
-                <div
-                  className={`cursor-target w-full md:w-1/2 pl-8 md:pl-8 ${
-                    i % 2 === 0 ? "md:opacity-0" : ""
-                  }`}
-                >
-                  <div className="md:hidden mt-2">
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
-                    <p className="text-text-secondary mt-1">{step.desc}</p>
-                  </div>
-                  <div className="hidden md:block">
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
-                    <p className="text-text-secondary mt-1">{step.desc}</p>
-                  </div>
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </AnimateOnScroll>
+      </div>
     </section>
   );
 }
