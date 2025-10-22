@@ -3,6 +3,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import Bubbles from "../../components/animated-bg/bubbles";
 import TargetCursor from "../../components/ui/targetcursor";
 
+// Define the structure for form data
 interface FormData {
   name: string;
   email: string;
@@ -18,12 +19,15 @@ export default function ContactPage() {
     message: "",
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  // Updated state to track success status along with submission
   const [formStatus, setFormStatus] = useState({
     submitted: false,
+    success: false, // Tracks if the submission was successful
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Handles changes in form inputs
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -34,6 +38,7 @@ export default function ContactPage() {
     }
   };
 
+  // Validates the form fields
   const validateForm = () => {
     const newErrors: Partial<FormData> = {};
     if (!formData.name.trim()) newErrors.name = "Name is required.";
@@ -47,6 +52,7 @@ export default function ContactPage() {
     return newErrors;
   };
 
+  // Handles form submission, calling the API route
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validateForm();
@@ -56,17 +62,61 @@ export default function ContactPage() {
     }
     setErrors({});
     setIsSubmitting(true);
+    // Reset status before attempting submission
+    setFormStatus({ submitted: false, success: false, message: "" });
 
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch("/api/contact", {
+        // API endpoint
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send form data as JSON
+      });
 
-    setIsSubmitting(false);
-    setFormStatus({
-      submitted: true,
-      message: "Thank you for your message! We’ll get back to you soon.",
-    });
+      const result = await response.json(); // Parse the JSON response from the API
+
+      if (response.ok) {
+        // Successful submission
+        setFormStatus({
+          submitted: true,
+          success: true,
+          message: result.message || "Thank you! We'll be in touch soon.",
+        });
+        // Optionally clear the form upon successful submission
+        setFormData({ name: "", email: "", service: "", message: "" });
+      } else {
+        // Handle API errors (e.g., validation errors, server issues)
+        if (response.status === 409) {
+          // Specific handling for duplicate email (Conflict)
+          setErrors({
+            email: result.error || "This email has already been submitted.",
+          });
+          setFormStatus({ submitted: false, success: false, message: "" }); // Keep form visible to show error
+        } else {
+          // Throw an error for other non-OK responses
+          throw new Error(
+            result.error || `HTTP error! status: ${response.status}`
+          );
+        }
+      }
+    } catch (error) {
+      // Handle network errors or errors thrown from the try block
+      console.error("Submission error:", error);
+      setFormStatus({
+        submitted: true, // Mark as submitted to show a message
+        success: false, // Indicate failure
+        message:
+          "Submission failed. Please try again later or contact us directly.",
+      });
+    } finally {
+      // Always stop the loading indicator
+      setIsSubmitting(false);
+    }
   };
 
+  // List of services for the dropdown
   const services = [
     "Web Development",
     "Website Management",
@@ -81,7 +131,9 @@ export default function ContactPage() {
     <div>
       <TargetCursor />
       {/* Page Header Section */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-8">
+        {" "}
+        {/* Added padding */}
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up bg-gradient-to-tl from-teal-700 via-green-200 to-teal-300 bg-clip-text text-transparent">
           Get in Touch
         </h1>
@@ -96,28 +148,55 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-glass p-6 md:p-8 rounded-xl border border-border-color glow-on-hover animate-fade-in-up animation-delay-400">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Conditional Rendering based on form submission status */}
               {formStatus.submitted ? (
-                <div className="cursor-target text-center lg:col-span-2 flex flex-col items-center justify-center h-full">
-                  <svg
-                    className="w-16 h-16 text-green-500 mb-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+                <div className="cursor-target text-center lg:col-span-2 flex flex-col items-center justify-center h-full min-h-[300px]">
+                  {" "}
+                  {/* Added min-height */}
+                  {/* Success Icon */}
+                  {formStatus.success ? (
+                    <svg
+                      className="w-16 h-16 text-green-500 mb-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    // Failure Icon
+                    <svg
+                      className="w-16 h-16 text-red-500 mb-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  )}
+                  <h3
+                    className={`text-2xl font-bold mb-2 ${
+                      formStatus.success ? "text-text-primary" : "text-red-500"
+                    }`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                  <h3 className=" text-2xl font-bold text-text-primary mb-2">
-                    Message Sent!
+                    {formStatus.success ? "Message Sent!" : "Submission Failed"}
                   </h3>
                   <p className="text-text-secondary">{formStatus.message}</p>
                 </div>
               ) : (
+                // Form and Contact Info Side-by-Side
                 <>
                   {/* Form Container */}
                   <div className="relative bg-gray-900/50 p-8 rounded-lg border border-gray-700 overflow-hidden">
@@ -125,8 +204,9 @@ export default function ContactPage() {
                     <form
                       onSubmit={handleSubmit}
                       className="space-y-4 relative z-10"
-                      noValidate
+                      noValidate // Prevent browser validation, rely on custom validation
                     >
+                      {/* Name Input */}
                       <div>
                         <input
                           name="name"
@@ -138,13 +218,22 @@ export default function ContactPage() {
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
                           }`}
+                          aria-required="true"
+                          aria-invalid={!!errors.name}
+                          aria-describedby={
+                            errors.name ? "name-error" : undefined
+                          }
                         />
                         {errors.name && (
-                          <p className="text-red-500 text-sm mt-1">
+                          <p
+                            id="name-error"
+                            className="text-red-500 text-sm mt-1"
+                          >
                             {errors.name}
                           </p>
                         )}
                       </div>
+                      {/* Email Input */}
                       <div>
                         <input
                           type="email"
@@ -157,13 +246,22 @@ export default function ContactPage() {
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
                           }`}
+                          aria-required="true"
+                          aria-invalid={!!errors.email}
+                          aria-describedby={
+                            errors.email ? "email-error" : undefined
+                          }
                         />
                         {errors.email && (
-                          <p className="text-red-500 text-sm mt-1">
+                          <p
+                            id="email-error"
+                            className="text-red-500 text-sm mt-1"
+                          >
                             {errors.email}
                           </p>
                         )}
                       </div>
+                      {/* Service Select */}
                       <div>
                         <select
                           name="service"
@@ -173,21 +271,36 @@ export default function ContactPage() {
                             errors.service
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
-                          }`}
+                          } ${
+                            formData.service === ""
+                              ? "text-gray-400"
+                              : "text-gray-100"
+                          }`} // Style placeholder
+                          aria-required="true"
+                          aria-invalid={!!errors.service}
+                          aria-describedby={
+                            errors.service ? "service-error" : undefined
+                          }
                         >
-                          <option value="">Service of Interest *</option>
+                          <option value="" disabled className="text-gray-500">
+                            Service of Interest *
+                          </option>
                           {services.map((s) => (
-                            <option key={s} value={s}>
+                            <option key={s} value={s} className="text-gray-100">
                               {s}
                             </option>
                           ))}
                         </select>
                         {errors.service && (
-                          <p className="text-red-500 text-sm mt-1">
+                          <p
+                            id="service-error"
+                            className="text-red-500 text-sm mt-1"
+                          >
                             {errors.service}
                           </p>
                         )}
                       </div>
+                      {/* Message Textarea */}
                       <div>
                         <textarea
                           name="message"
@@ -200,13 +313,22 @@ export default function ContactPage() {
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-600 focus:ring-primary"
                           }`}
+                          aria-required="true"
+                          aria-invalid={!!errors.message}
+                          aria-describedby={
+                            errors.message ? "message-error" : undefined
+                          }
                         ></textarea>
                         {errors.message && (
-                          <p className="text-red-500 text-sm mt-1">
+                          <p
+                            id="message-error"
+                            className="text-red-500 text-sm mt-1"
+                          >
                             {errors.message}
                           </p>
                         )}
                       </div>
+                      {/* Submit Button */}
                       <button
                         type="submit"
                         className="cursor-target btn-primary w-full mt-2 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
@@ -214,6 +336,7 @@ export default function ContactPage() {
                       >
                         {isSubmitting ? (
                           <>
+                            {/* Loading Spinner */}
                             <svg
                               className="animate-spin -ml-1 mr-3 h-5 w-5"
                               xmlns="http://www.w3.org/2000/svg"
@@ -242,32 +365,29 @@ export default function ContactPage() {
                       </button>
                     </form>
                   </div>
+
+                  {/* Contact Info Section */}
+                  <div className="cursor-target space-y-8 text-text-secondary flex flex-col justify-center">
+                    <Bubbles /> {/* Consider if bubbles are needed here too */}
+                    <div>
+                      <h3 className="text-2xl font-bold mb-3 text-primary">
+                        Contact Info
+                      </h3>
+                      <p className="text-lg">Email: info@techsolutions.com</p>
+                      <p className="text-lg">Phone: +1 (555) 123-4567</p>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-3 text-primary">
+                        Response Time
+                      </h3>
+                      <p className="text-lg">
+                        We pride ourselves on our promptness and aim to reply
+                        within 24 business hours.
+                      </p>
+                    </div>
+                  </div>
                 </>
               )}
-              {/* Contact Info */}
-              <div
-                className={`cursor-target space-y-8 text-text-secondary flex flex-col justify-center ${
-                  formStatus.submitted ? "hidden" : ""
-                }`}
-              >
-                <Bubbles />
-                <div>
-                  <h3 className="text-2xl font-bold mb-3 text-primary">
-                    Contact Info
-                  </h3>
-                  <p className="text-lg">Email: info@techsolutions.com</p>
-                  <p className="text-lg">Phone: +1 (555) 123-4567</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3 text-primary">
-                    Response Time
-                  </h3>
-                  <p className="text-lg">
-                    We pride ourselves on our promptness and aim to reply within
-                    24 business hours.
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -283,9 +403,11 @@ export default function ContactPage() {
             Stay connected with us on social media for the latest updates, tips,
             and insights.
           </p>
+          {/* Social Media Links */}
           <div className="flex items-center justify-center space-x-8">
+            {/* Instagram */}
             <a
-              href="#"
+              href="#" // Replace with your actual Instagram link
               aria-label="Instagram"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#E1306C] hover:bg-[#E1306C]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#E1306C]/30"
             >
@@ -305,8 +427,9 @@ export default function ContactPage() {
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
               </svg>
             </a>
+            {/* LinkedIn */}
             <a
-              href="#"
+              href="#" // Replace with your actual LinkedIn link
               aria-label="LinkedIn"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0A66C2]/30"
             >
@@ -326,8 +449,9 @@ export default function ContactPage() {
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
+            {/* Facebook */}
             <a
-              href="#"
+              href="#" // Replace with your actual Facebook link
               aria-label="Facebook"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-[#1877F2] hover:bg-[#1877F2]/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#1877F2]/30"
             >
@@ -345,8 +469,9 @@ export default function ContactPage() {
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
               </svg>
             </a>
+            {/* GitHub */}
             <a
-              href="#"
+              href="#" // Replace with your actual GitHub link
               aria-label="GitHub"
               className="cursor-target bg-primary/10 backdrop-blur-sm p-3 rounded-full text-text-secondary hover:text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
             >
