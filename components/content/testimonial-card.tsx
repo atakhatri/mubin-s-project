@@ -12,7 +12,7 @@ export default function TestimonialCard({
   company,
 }: TestimonialCardProps) {
   return (
-    <div className="bg-glass p-8 rounded-xl border border-border-color shadow-lg h-full flex flex-col">
+    <div className="bg-black p-8 rounded-xl border border-border-color shadow-lg h-full flex flex-col">
       <FaQuoteLeft className="text-primary text-3xl mb-4" />
       <p className="text-text-secondary text-lg italic mb-6 flex-grow">
         "{text}"

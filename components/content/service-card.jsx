@@ -6,7 +6,7 @@ export default function ServiceCard({ title, description, href }) {
     <>
       <Link
         href={href}
-        className="glow-on-hover block bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-primary transition-all"
+        className="glow-on-hover block bg-black p-6 rounded-lg border border-gray-700 hover:border-primary transition-all"
       >
         <Bubbles />
         <h3 className="text-xl font-bold mb-2 text-primary">{title}</h3>

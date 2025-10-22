@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Bubbles from "../../../components/content/bubbles";
+import Bubbles from "../../../components/animated-bg/bubbles";
 import SecurityServices from "./SecurityServices";
 import TargetCursor from "../../../components/ui/targetcursor";
 

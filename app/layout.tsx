@@ -5,7 +5,7 @@ import Navbar from "../components/layout/navbar";
 import Footer from "../components/layout/footer";
 import BackToTopButton from "../components/ui/back-to-top";
 import { ThemeProvider } from "../components/providers/theme-provider";
-import PixelBlast from "@/components/animated-bg/pixels";
+import Starfield from "@/components/animated-bg/Starfield";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -35,6 +35,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${roboto.variable} font-sans bg-background text-text-primary relative`}
       >
         <ThemeProvider>
+          <Starfield />
           <div className="relative z-10 flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-grow">{children}</main>

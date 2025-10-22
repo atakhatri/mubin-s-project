@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import Introduction from "./Introduction";
 import LogoLoop from "./AnimatedTechStack";
-import Bubbles from "../../../components/content/bubbles";
+import Bubbles from "../../../components/animated-bg/bubbles";
 import WhatWeBuild from "./WhatWeBuild";
 import Link from "next/link";
 import TargetCursor from "../../../components/ui/targetcursor";

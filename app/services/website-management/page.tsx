@@ -9,7 +9,7 @@ import {
   FaTachometerAlt,
   FaTasks,
 } from "react-icons/fa";
-import Bubbles from "../../../components/content/bubbles";
+import Bubbles from "../../../components/animated-bg/bubbles";
 import Image from "next/image";
 import TargetCursor from "../../../components/ui/targetcursor";
 import AnimateOnScroll from "../../../components/providers/AnimateOnScroll";

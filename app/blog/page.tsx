@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Bubbles from "../../components/content/bubbles";
+import Bubbles from "../../components/animated-bg/bubbles";
 import { FaCalendarAlt, FaUser, FaTag } from "react-icons/fa";
 import TargetCursor from "../../components/ui/targetcursor";
 

@@ -53,7 +53,7 @@ export default function ServicesGrid() {
       {services.map((s) => (
         <div
           key={s.title}
-          className="cursor-target group relative bg-glass border border-border-color rounded-lg p-6 flex flex-col items-start hover:shadow-lg hover:scale-105 transition-transform duration-300 overflow-hidden"
+          className="cursor-target group relative bg-black border border-border-color rounded-lg p-6 flex flex-col items-start hover:shadow-lg hover:scale-105 transition-transform duration-300 overflow-hidden"
         >
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.03] group-hover:opacity-[0.05] transition-opacity duration-300"></div>
           <div className="relative z-10 flex flex-col flex-grow">

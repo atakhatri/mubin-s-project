@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Bubbles from "../../../components/content/bubbles";
+import Bubbles from "../../../components/animated-bg/bubbles";
 import TargetCursor from "../../../components/ui/targetcursor";
 import AnimatedHeadline from "./AnimatedHeadline";
 import {

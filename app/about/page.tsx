@@ -2,7 +2,7 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 import { FaBullseye, FaHandshake, FaLightbulb, FaUsers } from "react-icons/fa";
-import Bubbles from "../../components/content/bubbles";
+import Bubbles from "../../components/animated-bg/bubbles";
 import { FaRocket } from "react-icons/fa";
 import TargetCursor from "../../components/ui/targetcursor";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 "use client";
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import Bubbles from "../../components/content/bubbles";
+import Bubbles from "../../components/animated-bg/bubbles";
 import TargetCursor from "../../components/ui/targetcursor";
 
 interface FormData {

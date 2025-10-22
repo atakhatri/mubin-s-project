@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Bubbles from "../../../components/content/bubbles";
+import Bubbles from "../../../components/animated-bg/bubbles";
 import AnimatedHeadline from "../seo-services/AnimatedHeadline";
 import TargetCursor from "../../../components/ui/targetcursor";
 import {
