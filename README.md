@@ -19,4 +19,4 @@ This is the official website for TechSolutions, a modern and professional IT sol
 - **Icons**: React Icons
 - **Font**: Geist
 
-Open [https://mubin-s-project.vercel.app/](The Link) with your browser to see the Website.
+Open [https://mubin-s-project.vercel.app/] with your browser to see the Website.
