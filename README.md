@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TechSolutions Website
 
-## Getting Started
+This is the official website for TechSolutions, a modern and professional IT solutions provider. The project is built with Next.js and showcases the company's services, expertise, and client testimonials through a sleek and interactive user interface.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Modern & Responsive Design**: A clean and professional layout that looks great on all devices.
+- **Interactive UI**: Engaging animations and effects, including a custom cursor, animated bubbles, and scroll-triggered animations.
+- **Services Showcase**: A dedicated grid to display the various services offered by TechSolutions.
+- **Dynamic "Why Us" Section**: An interactive section to highlight the company's strengths.
+- **Testimonial Carousel**: A rotating display of client testimonials to build trust and credibility.
+- **SEO Optimized**: Built with best practices to ensure high visibility on search engines.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js
+- **Styling**: Tailwind CSS
+- **Animations**: Custom CSS animations, Framer Motion (inferred for potential complex animations), and scroll-based animations.
+- **Icons**: React Icons
+- **Font**: Geist
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [https://mubin-s-project.vercel.app/](The Link) with your browser to see the Website.
