@@ -69,7 +69,7 @@ const TimelineItem = ({ event, index }: { event: any; index: number }) => {
       {/* Connector */}
       <div className="hidden md:block w-12 h-0.5 bg-border-color"></div>
       {/* Central Dot */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background-secondary p-1 rounded-full z-10">
+      <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background-secondary p-1 rounded-full z-10">
         <div className="bg-primary h-4 w-4 rounded-full ring-4 ring-background-secondary"></div>
       </div>
     </motion.div>

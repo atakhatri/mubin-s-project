@@ -29,7 +29,7 @@ export default function Footer() {
           >
             Services
           </Link>
-          <Link
+          {/* <Link
             href="/case-studies"
             className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
@@ -40,7 +40,7 @@ export default function Footer() {
             className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
           >
             Blog
-          </Link>
+          </Link> */}
           <Link
             href="/contact"
             className="cursor-target nav-link-underline text-text-secondary hover:text-primary transition-colors text-base"
